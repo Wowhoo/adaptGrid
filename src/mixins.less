@@ -1,71 +1,81 @@
 #grid {
-	.base(@gridGutterWidth) {
+	.base(@gutterWidth) {
 		.row {
-		    overflow: hidden;
-		    list-style: none;
-		    letter-spacing: -4px;  /* Fix inline-block weirdness */
-		    margin-right: 0 - @gridGutterWidth;
-	    	.column, [class*="span-"], [class*="column-"] {
-	    		padding-right: @gridGutterWidth;
-		        vertical-align: top;
-		        display: inline-block;
-		        -webkit-box-sizing: border-box;
-				   -moz-box-sizing: border-box;
-			    	-ms-box-sizing: border-box;
-		             	box-sizing: border-box;
-		        letter-spacing: 0; /* Restore letter spacing. */
-		        min-height: 1px; /* prevent collapsing columns */
-		        *display: inline; /* For IE6/IE7 */
-		        *zoom: 1; /* For IE6/IE7 */
-	      	}
-	      	&.no-spacing {
-	      		margin-right: 0;
-	      		.column, [class*="span-"], [class*="column-"] {
-	    			padding-right: 0;
-	    		}
-	      	}
-	    }
-	}
-
-	.default() {
-		.row {
-			.spanNum (@num) when (@num > 0) {
-				(~".span-@{num}") {.span(@num);}
-		        .spanNum(@num - 1);
-		    }
-		    .spanNum (0) {}
-
-		    .prefixNum (@num) when (@num > 0) {
-				(~".prefix-@{num}") {.prefix(@num);}
-		        .prefixNum(@num - 1);
-		    }
-		    .prefixNum (0) {}
-
-
-		    .suffixNum (@num) when (@num > 0) {
-				(~".suffix-@{num}") {.suffix(@num);}
-		        .suffixNum(@num - 1);
-		    }
-		    .suffixNum (0) {}
-
-		    .span(@num) {
-		    	width: (100% / @gridColumns) * @num;
-		    }
-
-	        .prefix(@num) {
-				margin-left: (100% / @gridColumns) * @num;
+			overflow: hidden;
+			margin-right: 0 - @gutterWidth;
+			list-style: none;
+			letter-spacing: -4px; /* Fix inline-block weirdness */
+			.column, [class*="span-"], [class*="column-"] {
+				display: inline-block;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-ms-box-sizing: border-box;
+				box-sizing: border-box;
+				padding-right: @gutterWidth;
+				min-height: 1px; /* prevent collapsing columns */
+				vertical-align: top;
+				letter-spacing: 0; /* Restore letter spacing. */
+				*display: inline; /* For IE6/IE7 */
+				*zoom: 1; /* For IE6/IE7 */
 			}
-
-			.suffix(@num) {
-				margin-right: (100% / @gridColumns) * @num;
+			&.no-spacing {
+				margin-right: 0;
+				.column, [class*="span-"], [class*="column-"] {
+					padding-right: 0;
+				}
 			}
-
-		    .spanNum (@gridColumns);
-      		.prefixNum (@gridColumns);
-      		.suffixNum (@gridColumns);
 		}
 
-		.tabletScreen() {
+		.reset(@resetGutterWidth) {
+			.row {
+				margin-right: 0 - @resetGutterWidth;
+				.column, [class*="span-"], [class*="column-"] {
+					padding-right: @resetGutterWidth;
+				}
+			}
+		}
+	}
+	.core {
+		.defaultScreen (@gridColumns){
+			.row {
+				.spanX (@index) when (@index < @gridColumns + 1) {
+					(~".span-@{index}") {
+						.span (@index);
+					}
+					.spanX (@index + 1);
+				}
+				
+				.prefixX (@index) when (@index < @gridColumns) {
+					(~".prefix-@{index}") {
+						.prefix (@index);
+					}
+					.prefixX (@index + 1);
+				}
+
+				.suffixX (@index) when (@index < @gridColumns) {
+					(~".suffix-@{index}") {
+						.suffix(@index);
+					}
+					.suffixX (@index + 1);
+				}
+
+				.span (@columns) {
+					width: (100% / @gridColumns) * @columns;
+				}
+				.prefix (@columns) {
+					margin-left: (100% / @gridColumns) * @columns;
+				}
+				.suffix (@columns) {
+					margin-right: (100% / @gridColumns) * @columns;
+				}
+
+				// Generate .spanX, prefixX and suffixX
+				.spanX (1);
+				.prefixX (1);
+				.suffixX (1);
+			}
+		}
+		.tabletScreen () {
 			.row {
 				[class*="span-"] {
 					&.tablet-full {
@@ -93,8 +103,7 @@
 				}
 			}
 		}
-
-		.mobileScreen() {
+		.mobileScreen () {
 			.row {
 				[class*="span-"] {
 					width: 100%;
@@ -117,35 +126,46 @@
 			}
 		}
 	}
+	.equalization {
+		.defaultScreen (@gridColumns){
+			.columnX (@index) when (@index < @gridColumns + 1) {
+				(~".has-@{index}") {
+					.column {
+						width: 100% / @index;
+					}
+				}
+				.columnX (@index + 1);
+			}
+			// generate columns
+			.columnX (1);
+		}
 
-	.equalization() {
+		.tabletScreen (@gridColumns){
+			.columnX (@index) when (@index < @gridColumns + 1) {
+				(~".tablet-has-@{index}") {
+					.column {
+						width: 100% / @index;
+					}
+				}
+				.columnX (@index + 1);
+			}
 
-		// default column number
-		.columnNum (@num) when (@num > 0) {
-	      	(~".has-@{num}") { .columnWidth(@num); }
-	      	.columnNum(@num - 1);
-	    }
-		.columnNum (0) {}
-		.columnWidth(@num) {.column{ width: 100% / @num;}}
-	    .columnNum(@gridColumns);
-	
+			// generate columns
+			.columnX (1);
+		}
 
-		// tablet screen column number
-		.tabletNum (@num) when (@num > 0) {
-      		(~".tablet-has-@{num}") { .columnWidthTablet(@num); }
-        	.tabletNum(@num - 1);
-      	}
-    	.tabletNum (0) {}
-    	.columnWidthTablet(@num) {.column{ width: 100% / @num;}}
+		.mobileScreen (@gridColumns){
+			.columnX (@index) when (@index < @gridColumns + 1) {
+				(~".mobile-has-@{index}") {
+					.column {
+						width: 100% / @index;
+					}
+				}
+				.columnX (@index + 1);
+			}
 
-		// mobile screen column number
-		.mobileNum (@num) when (@num > 0) {
-      		(~".mobile-has-@{num}") { .columnWidthMobile(@num); }
-        	.mobileNum(@num - 1);
-      	}
-    	.mobileNum (0) {}
-    	.columnWidthMobile(@num) {.column{ width: 100% / @num;}}
+			// generate columns
+			.columnX (1);
+		}
 	}
-
 }
-

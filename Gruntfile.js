@@ -13,16 +13,20 @@ module.exports = function(grunt) {
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     clean: {
-      files: ['dist']
+      files: ['css']
     },
     concat: {
       options: {
         banner: '<%= banner %>',
         stripBanners: true
       },
-      dist: {
-        src: ['src/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+      src: {
+        src: ['src/grid.less'],
+        dest: 'src/grid.less'
+      },
+      css: {
+        src: ['css/grid.css'],
+        dest: 'css/grid.css'
       }
     },
     uglify: {
@@ -46,14 +50,6 @@ module.exports = function(grunt) {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
-      },
-      src: {
-        files: '<%= jshint.src.src %>',
-        tasks: ['jshint:src', 'qunit']
-      },
-      test: {
-        files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'qunit']
       }
     },
     recess: {
@@ -77,6 +73,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint']);
-
+  grunt.registerTask('default', ['jshint','recess','concat']);
+  grunt.registerTask('css', ['recess','concat']);
 };

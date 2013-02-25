@@ -1,20 +1,41 @@
-@import "mixins.less";
-@import "variables.less";
+/*! Adapt Grid System - v0.2.0 - 2013-02-25
+* https://github.com/amazingSurge/adaptGrid
+* Copyright (c) 2013 amazingSurge; Licensed MIT */
 
+// Import
+// --------------------------------------------------
+@import "mixins.less";
+
+// Variables
+// --------------------------------------------------
+// default screen
+@gridColumns:               12;
+@gridGutterWidth:           20px;
+
+// tablet screen
+@gridColumnsTablet:         10;
+@gridGutterWidthTablet:     14px;
+
+// mobile screen
+@gridColumnsMobile:          6;
+@gridGutterWidthMobile:     10px;
+
+// Set up
+// --------------------------------------------------
 #grid > .base(@gridGutterWidth);
-#grid > .default();
-#grid > .equalization();
+#grid > .core > .defaultScreen(@gridColumns);
+#grid > .equalization > .defaultScreen(@gridColumns);
 
 // 481px-768px
 @media only screen and (min-width: 481px) and (max-width: 768px) { 
-	#grid > .base(@gridGutterWidthTablet);
-	#grid > .default > .tabletScreen();
-	#grid >	.equalization > .tabletNum(@gridColumns);
+	#grid > .base > .reset(@gridGutterWidthTablet);
+	#grid > .core > .tabletScreen();
+	#grid >	.equalization > .tabletScreen(@gridColumnsTablet);
 }
 
 // 0-480px
 @media only screen and (max-width: 480px) { 
-	#grid > .base(@gridGutterWidthMobile);
-	#grid > .default > .mobileScreen();
-	#grid > .equalization > .mobileNum(@gridColumns);
+	#grid > .base > .reset(@gridColumnsMobile);
+	#grid > .core > .mobileScreen();
+	#grid > .equalization > .mobileScreen(@gridColumnsMobile);
 }
