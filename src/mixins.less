@@ -27,7 +27,7 @@
 	    }
 	}
 
-	.default {
+	.default() {
 		.row {
 			.spanNum (@num) when (@num > 0) {
 				(~".span-@{num}") {.span(@num);}
@@ -65,7 +65,7 @@
       		.suffixNum (@gridColumns);
 		}
 
-		.tabletScreen {
+		.tabletScreen() {
 			.row {
 				[class*="span-"] {
 					&.tablet-full {
@@ -94,7 +94,7 @@
 			}
 		}
 
-		.mobileScreen {
+		.mobileScreen() {
 			.row {
 				[class*="span-"] {
 					width: 100%;
@@ -118,7 +118,7 @@
 		}
 	}
 
-	.equalization {
+	.equalization() {
 
 		// default column number
 		.columnNum (@num) when (@num > 0) {
