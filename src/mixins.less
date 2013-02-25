@@ -1,0 +1,151 @@
+#grid {
+	.base(@gridGutterWidth) {
+		.row {
+		    overflow: hidden;
+		    list-style: none;
+		    letter-spacing: -4px;  /* Fix inline-block weirdness */
+		    margin-right: 0 - @gridGutterWidth;
+	    	.column, [class*="span-"], [class*="column-"] {
+	    		padding-right: @gridGutterWidth;
+		        vertical-align: top;
+		        display: inline-block;
+		        -webkit-box-sizing: border-box;
+				   -moz-box-sizing: border-box;
+			    	-ms-box-sizing: border-box;
+		             	box-sizing: border-box;
+		        letter-spacing: 0; /* Restore letter spacing. */
+		        min-height: 1px; /* prevent collapsing columns */
+		        *display: inline; /* For IE6/IE7 */
+		        *zoom: 1; /* For IE6/IE7 */
+	      	}
+	      	&.no-spacing {
+	      		margin-right: 0;
+	      		.column, [class*="span-"], [class*="column-"] {
+	    			padding-right: 0;
+	    		}
+	      	}
+	    }
+	}
+
+	.default {
+		.row {
+			.spanNum (@num) when (@num > 0) {
+				(~".span-@{num}") {.span(@num);}
+		        .spanNum(@num - 1);
+		    }
+		    .spanNum (0) {}
+
+		    .prefixNum (@num) when (@num > 0) {
+				(~".prefix-@{num}") {.prefix(@num);}
+		        .prefixNum(@num - 1);
+		    }
+		    .prefixNum (0) {}
+
+
+		    .suffixNum (@num) when (@num > 0) {
+				(~".suffix-@{num}") {.suffix(@num);}
+		        .suffixNum(@num - 1);
+		    }
+		    .suffixNum (0) {}
+
+		    .span(@num) {
+		    	width: (100% / @gridColumns) * @num;
+		    }
+
+	        .prefix(@num) {
+				margin-left: (100% / @gridColumns) * @num;
+			}
+
+			.suffix(@num) {
+				margin-right: (100% / @gridColumns) * @num;
+			}
+
+		    .spanNum (@gridColumns);
+      		.prefixNum (@gridColumns);
+      		.suffixNum (@gridColumns);
+		}
+
+		.tabletScreen {
+			.row {
+				[class*="span-"] {
+					&.tablet-full {
+						width: 100%;
+					}
+					&.tablet-two-thirds {
+						width: 66.6666%;
+					}
+					&.tablet-half {
+						width: 50%;
+					}
+					&.tablet-third {
+						width: 33.3333%;
+					}
+				}
+				[class*="prefix-"] {
+					&.tablet-full, &.tablet-half, &.tablet-two-thirds, &.tablet-third {
+						margin-left: 0;
+					}
+				}
+				[class*="suffix-"] {
+					&.tablet-full, &.tablet-half, &.tablet-two-thirds, &.tablet-third {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+
+		.mobileScreen {
+			.row {
+				[class*="span-"] {
+					width: 100%;
+					&.mobile-two-thirds {
+						width: 66.6666%;
+					}
+					&.mobile-half {
+						width: 50%;
+					}
+					&.mobile-third {
+						width: 33.3333%;
+					}
+				}
+				[class*="prefix-"] {
+					margin-left: 0;
+				}
+				[class*="suffix-"] {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+
+	.equalization {
+
+		// default column number
+		.columnNum (@num) when (@num > 0) {
+	      	(~".has-@{num}") { .columnWidth(@num); }
+	      	.columnNum(@num - 1);
+	    }
+		.columnNum (0) {}
+		.columnWidth(@num) {.column{ width: 100% / @num;}}
+	    .columnNum(@gridColumns);
+	
+
+		// tablet screen column number
+		.tabletNum (@num) when (@num > 0) {
+      		(~".tablet-has-@{num}") { .columnWidthTablet(@num); }
+        	.tabletNum(@num - 1);
+      	}
+    	.tabletNum (0) {}
+    	.columnWidthTablet(@num) {.column{ width: 100% / @num;}}
+
+		// mobile screen column number
+		.mobileNum (@num) when (@num > 0) {
+      		(~".mobile-has-@{num}") { .columnWidthMobile(@num); }
+        	.mobileNum(@num - 1);
+      	}
+    	.mobileNum (0) {}
+    	.columnWidthMobile(@num) {.column{ width: 100% / @num;}}
+	}
+
+}
+

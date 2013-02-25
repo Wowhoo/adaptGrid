@@ -1,0 +1,20 @@
+@import "mixins.less";
+@import "variables.less";
+
+#grid > .base(@gridGutterWidth);
+#grid > .default;
+#grid > .equalization;
+
+// 481px-768px
+@media only screen and (min-width: 481px) and (max-width: 768px) { 
+	#grid > .base(@gridGutterWidthTablet);
+	#grid > .default > .tabletScreen;
+	#grid >	.equalization > .tabletNum(@gridColumns);
+}
+
+// 0-480px
+@media only screen and (max-width: 480px) { 
+	#grid > .base(@gridGutterWidthMobile);
+	#grid > .default > .mobileScreen;
+	#grid > .equalization > .mobileNum(@gridColumns);
+}
