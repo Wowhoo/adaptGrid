@@ -52,6 +52,13 @@ module.exports = function(grunt) {
         tasks: ['jshint:gruntfile']
       }
     },
+    less: {
+      dist: {
+        files: {
+          "css/grid.css": "src/grid.less"
+        }
+      }
+    },
     recess: {
       dist: {
         options: {
@@ -71,8 +78,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-
+  grunt.loadNpmTasks('grunt-contrib-less');
   // Default task.
   grunt.registerTask('default', ['jshint','recess','concat']);
   grunt.registerTask('css', ['recess','concat']);
+
+
 };

@@ -1,171 +1,355 @@
 #grid {
+	
 	.base(@gutterWidth) {
 		.row {
 			overflow: hidden;
-			margin-right: 0 - @gutterWidth;
+			margin-left: 0 - @gutterWidth;
 			list-style: none;
 			letter-spacing: -4px; /* Fix inline-block weirdness */
+			font-size: 0;
 			.column, [class*="span-"], [class*="column-"] {
 				display: inline-block;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;
 				-ms-box-sizing: border-box;
+				-o-box-sizing: border-box;
 				box-sizing: border-box;
-				padding-right: @gutterWidth;
+				padding-left: @gutterWidth;
+				font-size: @gridFontsize;
 				min-height: 1px; /* prevent collapsing columns */
 				vertical-align: top;
 				letter-spacing: 0; /* Restore letter spacing. */
 				*display: inline; /* For IE6/IE7 */
-				*zoom: 1; /* For IE6/IE7 */
+				*zoom: 1; /* For IE6/IE7 */	
 			}
 			&.no-spacing {
-				margin-right: 0;
+				margin-left: 0;
 				.column, [class*="span-"], [class*="column-"] {
-					padding-right: 0;
+					padding-left: 0;
 				}
 			}
 		}
-
 		.reset(@resetGutterWidth) {
 			.row {
-				margin-right: 0 - @resetGutterWidth;
+				margin-left: 0 - @resetGutterWidth;
 				.column, [class*="span-"], [class*="column-"] {
-					padding-right: @resetGutterWidth;
+					padding-left: @resetGutterWidth;
 				}
 			}
 		}
 	}
-	.core {
-		.defaultScreen (@gridColumns){
-			.row {
-				.spanX (@index) when (@index < @gridColumns + 1) {
-					(~".span-@{index}") {
-						.span (@index);
-					}
-					.spanX (@index + 1);
-				}
-				
-				.prefixX (@index) when (@index < @gridColumns) {
-					(~".prefix-@{index}") {
-						.prefix (@index);
-					}
-					.prefixX (@index + 1);
-				}
 
-				.suffixX (@index) when (@index < @gridColumns) {
-					(~".suffix-@{index}") {
-						.suffix(@index);
-					}
-					.suffixX (@index + 1);
-				}
+	.core (@screenSize, @gridColumns) when (@screenSize = default){
+		.spanX (@index) when (@index < @gridColumns + 1) {
+			(~".span-@{index}") {
+				.span (@index);
+			}
+			.spanX (@index + 1);
+		}
+		
+		.prefixX (@index) when (@index < @gridColumns) {
+			(~".prefix-@{index}") {
+				.prefix (@index);
+			}
+			.prefixX (@index + 1);
+		}
 
-				.span (@columns) {
-					width: (100% / @gridColumns) * @columns;
-				}
-				.prefix (@columns) {
-					margin-left: (100% / @gridColumns) * @columns;
-				}
-				.suffix (@columns) {
-					margin-right: (100% / @gridColumns) * @columns;
-				}
+		.suffixX (@index) when (@index < @gridColumns) {
+			(~".suffix-@{index}") {
+				.suffix(@index);
+			}
+			.suffixX (@index + 1);
+		}
+		.span (@columns) {
+			width: (100% / @gridColumns) * @columns;
+		}
+		.prefix (@columns) {
+			margin-left: (100% / @gridColumns) * @columns;
+		}
+		.suffix (@columns) {
+			margin-right: (100% / @gridColumns) * @columns;
+		}
 
-				// Generate .spanX, prefixX and suffixX
-				.spanX (1);
-				.prefixX (1);
-				.suffixX (1);
+		.spanX (1);
+		.prefixX (1);
+		.suffixX (1);
+	}
+
+	.core (@screenSize, @gridColumns) when not (@screenSize = default){
+		.column, [class*="span-"], [class*="column-"] {
+			width: 100%;
+		}
+		[class*="prefix-"] {
+			margin-left: 0;
+		}
+		[class*="suffix-"] {
+			margin-right: 0;
+		}
+		.XspanX (@index) when (@index < @gridColumns + 1) {
+			(~".@{screenSize}-span-@{index}") {
+				.span (@index);
+			}
+			.XspanX (@index + 1);
+		}
+		
+		.XprefixX (@index) when (@index < @gridColumns) {
+			(~".@{screenSize}-prefix-@{index}") {
+				.prefix (@index);
+			}
+			.XprefixX (@index + 1);
+		}
+
+		.XsuffixX (@index) when (@index < @gridColumns) {
+			(~".@{screenSize}-suffix-@{index}") {
+				.suffix (@index);
+			}
+			.XsuffixX (@index + 1);
+		}
+		.span (@columns) {
+			width: (100% / @gridColumns) * @columns;
+		}
+		.prefix (@columns) {
+			margin-left: (100% / @gridColumns) * @columns;
+		}
+		.suffix (@columns) {
+			margin-right: (100% / @gridColumns) * @columns;
+		}
+		.XspanX (1);
+		.XprefixX (1);
+		.XsuffixX (1);
+	}
+
+	.equalization (@screenSize, @gridColumns) when (@screenSize = default){
+		.columnX (@index) when (@index < @gridColumns + 1) {
+			(~".has-@{index}") {
+				.column {
+					width: 100% / @index;
+				}
+			}
+			.columnX (@index + 1);
+		}
+
+		// generate columns
+		.columnX (1);
+	}
+	.equalization (@screenSize, @gridColumns) when not (@screenSize = default){
+		.columnX (@index) when (@index < @gridColumns + 1) {
+			(~".@{screenSize}-has-@{index}") {
+				.column {
+					width: 100% / @index;
+				}
+			}
+			.columnX (@index + 1);
+		}
+
+		// generate columns
+		.columnX (1);
+	}
+
+
+
+	.simplifyBase (@gutterWidth) {
+		.row {
+			overflow: hidden;
+			margin-left: 0 - @gutterWidth;
+			list-style: none;
+			letter-spacing: -4px; /* Fix inline-block weirdness */
+			font-size: 0;
+			.column {
+				display: inline-block;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-ms-box-sizing: border-box;
+				-o-box-sizing: border-box;
+				box-sizing: border-box;
+				padding-left: @gutterWidth;
+				font-size: @gridFontsize;
+				min-height: 1px; /* prevent collapsing columns */
+				vertical-align: top;
+				letter-spacing: 0; /* Restore letter spacing. */
+				*display: inline; /* For IE6/IE7 */
+				*zoom: 1; /* For IE6/IE7 */	
+			}
+			&.no-spacing {
+				margin-left: 0;
+				.column, [class*="span-"], [class*="column-"] {
+					padding-left: 0;
+				}
+			}
+			.full {
+				width: 100%;
+			}
+			.half, .two-fourth, .three-sixth {
+				width: 50%;
+			}
+			.third, .two-sixth {
+				width: 33.3333%;
+			}
+			.two-third {
+				width: 66.6666%;
+			}
+			.fourth {
+				width: 25%;
+			}
+			.three-fourth {
+				width: 75%;
+			}
+			.fifth {
+				width: 20%;
+			}
+			.two-fifth {
+				width: 40%;
+			}
+			.three-fifth {
+				width: 60%;
+			}
+			.four-fifth {
+				width: 80%;
+			}
+			.sixth {
+				width: 16.6666%;
+			}
+			.five-sixth {
+				width: 83.3333%;
 			}
 		}
-		.tabletScreen () {
+		.reset(@resetGutterWidth) {
 			.row {
-				[class*="span-"] {
-					&.tablet-full {
-						width: 100%;
-					}
-					&.tablet-two-thirds {
-						width: 66.6666%;
-					}
-					&.tablet-half {
-						width: 50%;
-					}
-					&.tablet-third {
-						width: 33.3333%;
-					}
-				}
-				[class*="prefix-"] {
-					&.tablet-full, &.tablet-half, &.tablet-two-thirds, &.tablet-third {
-						margin-left: 0;
-					}
-				}
-				[class*="suffix-"] {
-					&.tablet-full, &.tablet-half, &.tablet-two-thirds, &.tablet-third {
-						margin-right: 0;
-					}
+				margin-left: 0 - @resetGutterWidth;
+				.column, [class*="span-"], [class*="column-"] {
+					padding-left: @resetGutterWidth;
 				}
 			}
-		}
-		.mobileScreen () {
-			.row {
-				[class*="span-"] {
-					width: 100%;
-					&.mobile-two-thirds {
-						width: 66.6666%;
-					}
-					&.mobile-half {
-						width: 50%;
-					}
-					&.mobile-third {
-						width: 33.3333%;
-					}
-				}
-				[class*="prefix-"] {
-					margin-left: 0;
-				}
-				[class*="suffix-"] {
-					margin-right: 0;
-				}
+		}	
+	}
+
+	.simplify (@screenSize, @columnType) when (@columnType = full){	
+		.row {
+			(~".@{screenSize}-full") {
+				width: 100%;
 			}
 		}
 	}
-	.equalization {
-		.defaultScreen (@gridColumns){
-			.columnX (@index) when (@index < @gridColumns + 1) {
-				(~".has-@{index}") {
-					.column {
-						width: 100% / @index;
-					}
-				}
-				.columnX (@index + 1);
+	.simplify (@screenSize, @columnType) when (@columnType = half){
+		.row {
+			(~".@{screenSize}-full") {
+				width: 100%;
 			}
-			// generate columns
-			.columnX (1);
+			(~".@{screenSize}-half") {
+				width: 50%;
+			}
 		}
-
-		.tabletScreen (@gridColumns){
-			.columnX (@index) when (@index < @gridColumns + 1) {
-				(~".tablet-has-@{index}") {
-					.column {
-						width: 100% / @index;
-					}
-				}
-				.columnX (@index + 1);
+	}
+	.simplify (@screenSize, @columnType) when (@columnType = third){
+		.row {
+			(~".@{screenSize}-full") {
+				width: 100%;
 			}
-
-			// generate columns
-			.columnX (1);
+			(~".@{screenSize}-half") {
+				width: 50%;
+			}
+			(~".@{screenSize}-third") {
+				width: 33.3333%;
+			}
+			(~".@{screenSize}-two-third") {
+				width: 66.6666%;
+			}
 		}
-
-		.mobileScreen (@gridColumns){
-			.columnX (@index) when (@index < @gridColumns + 1) {
-				(~".mobile-has-@{index}") {
-					.column {
-						width: 100% / @index;
-					}
-				}
-				.columnX (@index + 1);
+	}
+	.simplify (@screenSize, @columnType) when (@columnType = fourth){
+		.row {
+			(~".@{screenSize}-full") {
+				width: 100%;
 			}
-
-			// generate columns
-			.columnX (1);
+			(~".@{screenSize}-half"), (~".@{screenSize}-two-fourth") {
+				width: 50%;
+			}
+			(~".@{screenSize}-third") {
+				width: 33.3333%;
+			}
+			(~".@{screenSize}-two-third") {
+				width: 66.6666%;
+			}
+			(~".@{screenSize}-fourth") {
+				width: 25%;
+			}
+			(~".@{screenSize}-three-fourth") {
+				width: 75%;
+			}
+		}
+	}
+	.simplify (@screenSize, @columnType) when (@columnType = fifth){
+		.row {
+			(~".@{screenSize}-full") {
+				width: 100%;
+			}
+			(~".@{screenSize}-half"), (~".@{screenSize}-two-fourth") {
+				width: 50%;
+			}
+			(~".@{screenSize}-third") {
+				width: 33.3333%;
+			}
+			(~".@{screenSize}-two-third") {
+				width: 66.6666%;
+			}
+			(~".@{screenSize}-fourth") {
+				width: 25%;
+			}
+			(~".@{screenSize}-three-fourth") {
+				width: 75%;
+			}
+			(~".@{screenSize}-fifth") {
+				width: 20%;
+			}
+			(~".@{screenSize}-two-fifth") {
+				width: 40%;
+			}
+			(~".@{screenSize}-three-fifth") {
+				width: 60%;
+			}
+			(~".@{screenSize}-four-fifth") {
+				width: 80%;
+			}
+		}
+	}
+	.simplify (@screenSize, @columnType) when (@columnType = sixth){
+		.row {
+			(~".@{screenSize}-full") {
+				width: 100%;
+			}
+			(~".@{screenSize}-half"), (~".@{screenSize}-two-fourth"), (~".@{screenSize}-three-sixth") {
+				width: 50%;
+			}
+			(~".@{screenSize}-third"), (~".@{screenSize}-two-sixth") {
+				width: 33.3333%;
+			}
+			(~".@{screenSize}-two-third") {
+				width: 66.6666%;
+			}
+			(~".@{screenSize}-fourth") {
+				width: 25%;
+			}
+			(~".@{screenSize}-three-fourth") {
+				width: 75%;
+			}
+			(~".@{screenSize}-fifth") {
+				width: 20%;
+			}
+			(~".@{screenSize}-two-fifth") {
+				width: 40%;
+			}
+			(~".@{screenSize}-three-fifth") {
+				width: 60%;
+			}
+			(~".@{screenSize}-four-fifth") {
+				width: 80%;
+			}
+			(~".@{screenSize}-sixth") {
+				width: 16.6666%;
+			}
+			(~".@{screenSize}-five-sixth") {
+				width: 83.3333%;
+			}
 		}
 	}
 }

@@ -1,3 +1,6 @@
+/*! Adapt Grid System - v0.2.0 - 2013-02-28
+* https://github.com/amazingSurge/adaptGrid
+* Copyright (c) 2013 amazingSurge; Licensed MIT */
 /*! Adapt Grid System - v0.2.0 - 2013-02-25
 * https://github.com/amazingSurge/adaptGrid
 * Copyright (c) 2013 amazingSurge; Licensed MIT */
@@ -9,33 +12,48 @@
 // Variables
 // --------------------------------------------------
 // default screen
-@gridColumns:               12;
-@gridGutterWidth:           20px;
+
+@gridColumns:               		12;
+@gridGutterWidth:           		20px;
+@gridEqualColumns:          		12;
+@gridFontsize:              		14px;
 
 // tablet screen
-@gridColumnsTablet:         10;
-@gridGutterWidthTablet:     14px;
+@screenTablet: 						tablet;
+@gridColumnsTablet:         		12;
+@gridGutterWidthTablet:     		14px;
+@gridEqualColumnsTablet:    		10;
+@gridSimplifyColumnsTablet:   		sixth;
 
 // mobile screen
-@gridColumnsMobile:          6;
-@gridGutterWidthMobile:     10px;
+@screenMobile: 						mobile;
+@gridColumnsMobile:          		6;
+@gridGutterWidthMobile:     		10px;
+@gridEqualColumnsMobile:     		6;
+@gridSimplifyColumnsMobile:   		fourth;
 
 // Set up
 // --------------------------------------------------
 #grid > .base(@gridGutterWidth);
-#grid > .core > .defaultScreen(@gridColumns);
-#grid > .equalization > .defaultScreen(@gridColumns);
+#grid > .core(default, @gridColumns);
+#grid > .equalization(default, @gridEqualColumns);
+#grid > .simplifyBase (@gridGutterWidth);
 
 // 481px-768px
 @media only screen and (min-width: 481px) and (max-width: 768px) { 
 	#grid > .base > .reset(@gridGutterWidthTablet);
-	#grid > .core > .tabletScreen();
-	#grid >	.equalization > .tabletScreen(@gridColumnsTablet);
+	#grid > .core(@screenTablet, @gridColumnsTablet);
+	#grid >	.equalization(@screenTablet, @gridEqualColumnsTablet);
+	#grid > .simplifyBase > .reset(@gridGutterWidthTablet);
+	#grid > .simplify(@screenTablet, @gridSimplifyColumnsTablet);
+
 }
 
-// 0-480px
+// // 0-480px
 @media only screen and (max-width: 480px) { 
-	#grid > .base > .reset(@gridColumnsMobile);
-	#grid > .core > .mobileScreen();
-	#grid > .equalization > .mobileScreen(@gridColumnsMobile);
+	#grid > .base > .reset(@gridGutterWidthMobile);
+	#grid > .core(@screenMobile, @gridColumnsMobile);
+	#grid > .equalization(@screenMobile, @gridEqualColumnsMobile);
+	#grid > .simplifyBase > .reset(@gridGutterWidthMobile);
+	#grid > .simplify(@screenMobile, @gridSimplifyColumnsMobile);
 }
