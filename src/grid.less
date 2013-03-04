@@ -17,6 +17,8 @@
 @gridGutterWidth:           		20px;
 @gridEqualColumns:          		12;
 @gridFontsize:              		14px;
+@withPrefix: 						true;
+@withSuffix: 						true;
 
 // tablet screen
 @screenTablet: 						tablet;
@@ -24,6 +26,8 @@
 @gridGutterWidthTablet:     		14px;
 @gridEqualColumnsTablet:    		10;
 @gridSimplifyColumnsTablet:   		sixth;
+@withPrefixTablet: 					true;
+@withSuffixTablet: 					true;
 
 // mobile screen
 @screenMobile: 						mobile;
@@ -31,18 +35,20 @@
 @gridGutterWidthMobile:     		10px;
 @gridEqualColumnsMobile:     		6;
 @gridSimplifyColumnsMobile:   		fourth;
+@withPrefixMobile: 					true;
+@withSuffixMobile: 					true;
 
 // Set up
 // --------------------------------------------------
 #grid > .base(@gridGutterWidth);
-#grid > .core(default, @gridColumns);
+#grid > .core(default, @gridColumns, @withPrefix, @withSuffix);
 #grid > .equalization(default, @gridEqualColumns);
 #grid > .simplifyBase (@gridGutterWidth);
 
 // 481px-768px
 @media only screen and (min-width: 481px) and (max-width: 768px) { 
 	#grid > .base > .reset(@gridGutterWidthTablet);
-	#grid > .core(@screenTablet, @gridColumnsTablet);
+	#grid > .core(@screenTablet, @gridColumnsTablet, @withPrefixTablet, @withSuffixTablet);
 	#grid >	.equalization(@screenTablet, @gridEqualColumnsTablet);
 	#grid > .simplifyBase > .reset(@gridGutterWidthTablet);
 	#grid > .simplify(@screenTablet, @gridSimplifyColumnsTablet);
@@ -52,7 +58,7 @@
 // // 0-480px
 @media only screen and (max-width: 480px) { 
 	#grid > .base > .reset(@gridGutterWidthMobile);
-	#grid > .core(@screenMobile, @gridColumnsMobile);
+	#grid > .core(@screenMobile, @gridColumnsMobile, @withPrefixMobile, @withSuffixMobile);
 	#grid > .equalization(@screenMobile, @gridEqualColumnsMobile);
 	#grid > .simplifyBase > .reset(@gridGutterWidthMobile);
 	#grid > .simplify(@screenMobile, @gridSimplifyColumnsMobile);

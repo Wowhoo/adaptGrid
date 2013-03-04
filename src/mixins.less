@@ -42,43 +42,51 @@
 		}
 	}
 
-	.core (@screenSize, @gridColumns) when (@screenSize = default){
+	.core (@screenSize, @gridColumns, @preControl, @sufControl) when (@screenSize = default){
 		.spanX (@index) when (@index < @gridColumns + 1) {
 			(~".span-@{index}") {
 				.span (@index);
 			}
 			.spanX (@index + 1);
 		}
-		
-		.prefixX (@index) when (@index < @gridColumns) {
-			(~".prefix-@{index}") {
-				.prefix (@index);
-			}
-			.prefixX (@index + 1);
-		}
-
-		.suffixX (@index) when (@index < @gridColumns) {
-			(~".suffix-@{index}") {
-				.suffix(@index);
-			}
-			.suffixX (@index + 1);
-		}
 		.span (@columns) {
 			width: (100% / @gridColumns) * @columns;
 		}
-		.prefix (@columns) {
-			margin-left: (100% / @gridColumns) * @columns;
-		}
-		.suffix (@columns) {
-			margin-right: (100% / @gridColumns) * @columns;
-		}
-
 		.spanX (1);
-		.prefixX (1);
-		.suffixX (1);
+		
+
+		.withPrefix (@preControl) when (@preControl = true) {
+			.prefixX (@index) when (@index < @gridColumns) {
+				(~".prefix-@{index}") {
+					.prefix (@index);
+				}
+				.prefixX (@index + 1);
+			}
+			.prefix (@columns) {
+				margin-left: (100% / @gridColumns) * @columns;
+			}
+			.prefixX (1);
+		}
+		.withPrefix (@preControl);
+
+		.withSuffix (@sufControl) when (@sufControl = true) {
+			.suffixX (@index) when (@index < @gridColumns) {
+				(~".suffix-@{index}") {
+					.suffix(@index);
+				}
+				.suffixX (@index + 1);
+			}
+			.suffix (@columns) {
+				margin-right: (100% / @gridColumns) * @columns;
+			}	
+			.suffixX (1);		
+		}
+		.withSuffix (@sufControl);	
 	}
 
-	.core (@screenSize, @gridColumns) when not (@screenSize = default){
+
+
+	.core (@screenSize, @gridColumns, @preControl, @sufControl) when not (@screenSize = default){
 		.column, [class*="span-"], [class*="column-"] {
 			width: 100%;
 		}
@@ -88,38 +96,46 @@
 		[class*="suffix-"] {
 			margin-right: 0;
 		}
+
 		.XspanX (@index) when (@index < @gridColumns + 1) {
 			(~".@{screenSize}-span-@{index}") {
-				.span (@index);
+				.Xspan (@index);
 			}
 			.XspanX (@index + 1);
 		}
-		
-		.XprefixX (@index) when (@index < @gridColumns) {
-			(~".@{screenSize}-prefix-@{index}") {
-				.prefix (@index);
-			}
-			.XprefixX (@index + 1);
-		}
-
-		.XsuffixX (@index) when (@index < @gridColumns) {
-			(~".@{screenSize}-suffix-@{index}") {
-				.suffix (@index);
-			}
-			.XsuffixX (@index + 1);
-		}
-		.span (@columns) {
+		.Xspan (@columns) {
 			width: (100% / @gridColumns) * @columns;
 		}
-		.prefix (@columns) {
-			margin-left: (100% / @gridColumns) * @columns;
-		}
-		.suffix (@columns) {
-			margin-right: (100% / @gridColumns) * @columns;
-		}
 		.XspanX (1);
-		.XprefixX (1);
-		.XsuffixX (1);
+		
+
+		.withPrefix (@preControl) when (@preControl = true) {
+			.XprefixX (@index) when (@index < @gridColumns) {
+				(~".@{screenSize}-prefix-@{index}") {
+					.Xprefix (@index);
+				}
+				.XprefixX (@index + 1);
+			}
+			.Xprefix (@columns) {
+				margin-left: (100% / @gridColumns) * @columns;
+			}
+			.XprefixX (1);
+		}
+		.withPrefix (@preControl);
+
+		.withSuffix (@sufControl) when (@sufControl = true) {
+			.XsuffixX (@index) when (@index < @gridColumns) {
+				(~".@{screenSize}-suffix-@{index}") {
+					.Xsuffix (@index);
+				}
+				.XsuffixX (@index + 1);
+			}
+			.Xsuffix (@columns) {
+				margin-right: (100% / @gridColumns) * @columns;
+			}	
+			.XsuffixX (1);		
+		}
+		.withSuffix (@sufControl);
 	}
 
 	.equalization (@screenSize, @gridColumns) when (@screenSize = default){
