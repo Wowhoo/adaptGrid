@@ -45,6 +45,9 @@
 .row.no-spacing [class*="column-"] {
   padding-left: 0;
 }
+.row.center {
+  text-align: center;
+}
 .span-1 {
   width: 8.333333333333334%;
 }
