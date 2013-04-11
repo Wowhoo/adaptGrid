@@ -1,65 +1,19 @@
-/*! Adapt Grid System - v0.2.0 - 2013-02-28
+/* Adapt Grid System - v0.2.0 - 2013-04-11
 * https://github.com/amazingSurge/adaptGrid
 * Copyright (c) 2013 amazingSurge; Licensed MIT */
-/*! Adapt Grid System - v0.2.0 - 2013-02-25
-* https://github.com/amazingSurge/adaptGrid
-* Copyright (c) 2013 amazingSurge; Licensed MIT */
-
 // Import
 // --------------------------------------------------
 @import "mixins.less";
 
 // Variables
 // --------------------------------------------------
-// default screen
-
-@gridColumns:               		12;
-@gridGutterWidth:           		20px;
-@gridEqualColumns:          		12;
-@gridFontsize:              		14px;
-@withPrefix: 						true;
-@withSuffix: 						true;
-
-// tablet screen
-@screenTablet: 						tablet;
-@gridColumnsTablet:         		12;
-@gridGutterWidthTablet:     		14px;
-@gridEqualColumnsTablet:    		10;
-@gridSimplifyColumnsTablet:   		sixth;
-@withPrefixTablet: 					true;
-@withSuffixTablet: 					true;
-
-// mobile screen
-@screenMobile: 						mobile;
-@gridColumnsMobile:          		6;
-@gridGutterWidthMobile:     		10px;
-@gridEqualColumnsMobile:     		6;
-@gridSimplifyColumnsMobile:   		fourth;
-@withPrefixMobile: 					true;
-@withSuffixMobile: 					true;
+@gridFontsize:                      14px;
 
 // Set up
 // --------------------------------------------------
-#grid > .base(@gridGutterWidth);
-#grid > .core(default, @gridColumns, @withPrefix, @withSuffix);
-#grid > .equalization(default, @gridEqualColumns);
-#grid > .simplifyBase (@gridGutterWidth);
+// .generator(@gutterWidth, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns)
+#grid.generator(20px, true, 12, true, true, true, 12, true, sixth);
 
-// 481px-768px
-@media only screen and (min-width: 481px) and (max-width: 768px) { 
-	#grid > .base > .reset(@gridGutterWidthTablet);
-	#grid > .core(@screenTablet, @gridColumnsTablet, @withPrefixTablet, @withSuffixTablet);
-	#grid >	.equalization(@screenTablet, @gridEqualColumnsTablet);
-	#grid > .simplifyBase > .reset(@gridGutterWidthTablet);
-	#grid > .simplify(@screenTablet, @gridSimplifyColumnsTablet);
-
-}
-
-// // 0-480px
-@media only screen and (max-width: 480px) { 
-	#grid > .base > .reset(@gridGutterWidthMobile);
-	#grid > .core(@screenMobile, @gridColumnsMobile, @withPrefixMobile, @withSuffixMobile);
-	#grid > .equalization(@screenMobile, @gridEqualColumnsMobile);
-	#grid > .simplifyBase > .reset(@gridGutterWidthMobile);
-	#grid > .simplify(@screenMobile, @gridSimplifyColumnsMobile);
-}
+//.generator(@screenName, @breakpoint, @gutterWidth, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns)
+#grid.generator(tablet, 768px, 14px, true, 12, true, true, true, 10, true, sixth);
+#grid.generator(mobile, 480px, 10px, true, 6, true, true, true, 6, true, third);
