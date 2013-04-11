@@ -1,4 +1,4 @@
-/* Adapt Grid System - v0.2.0 - 2013-04-11
+/* Adapt Grid System - v0.2.0 - 2013-04-12
 * https://github.com/amazingSurge/adaptGrid
 * Copyright (c) 2013 amazingSurge; Licensed MIT */
 // Import
@@ -11,9 +11,9 @@
 
 // Set up
 // --------------------------------------------------
-// .generator(@gutterWidth, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns)
-// .generator(@screenName, @breakpoint, @gutterWidth, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns)
+// .generator(@core, @coreGutterWidth, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns)
+// .generator(@screenName, @breakpoint, @core, @coreGutterWidth, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns)
 
-#grid > .generator(20px, true, 12, true, true, true, 12, true, sixth);
-#grid > .generator(tablet, 768px, 14px, true, 12, true, true, true, 10, true, sixth);
-#grid > .generator(mobile, 480px, 10px, true, 6, true, true, true, 6, true, fourth);
+#grid > .generator (true, 20px, 12, true, true, true, 12, true, sixth);
+#grid > .generator (tablet, 768px, true, 14px, 12, true, true, true, 10, true, sixth);
+#grid > .generator (mobile, 480px, true, 10px, 6, true, true, true, 6, true, fourth);

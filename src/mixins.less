@@ -1,24 +1,23 @@
 #grid {
-	.generator (@gutterWidth, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
+	.generator (@core, @coreGutterWidth, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
 		@namespace: '';
 
-		#grid > .base (@gutterWidth);
-		#grid > ._generator (@namespace, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns);
+		#grid > .base ();
+		#grid > ._generator (@namespace, @core, @coreGutterWidth, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns);
 	}
 
-	.generator (@screenName, @breakpoint, @gutterWidth, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
+	.generator (@screenName, @breakpoint, @core, @coreGutterWidth, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
 		@namespace: ~`"@{screenName}" + '-'`;	
 
 		@media only screen and (max-width: @breakpoint) {
-			#grid > .base > .reset (@gutterWidth);
-			#grid > ._generator (@namespace, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns);
+			#grid > ._generator (@namespace, @core, @coreGutterWidth, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns);
 		}
 	}
 
-	._generator (@namespace, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
+	._generator (@namespace, @core, @coreGutterWidth, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
 		// define
 		.core (@core) when (@core = true){
-			#grid > .core (@namespace, @coreColumns, @coreWithPrefix, @coreWithSuffix);
+			#grid > .core (@namespace, @coreGutterWidth, @coreColumns, @coreWithPrefix, @coreWithSuffix);
 		}
 		.equalization (@equalization) when (@equalization = true){
 			#grid > .equalization (@namespace, @equalizationColumns);
@@ -33,13 +32,13 @@
 		.phrase(@phrase);
 	}
 
-	.base (@gutterWidth) {
+	.base () {
 		.row {
 			overflow: hidden;
-			margin-left: 0 - @gutterWidth;
 			list-style: none;
 			letter-spacing: -4px; /* Fix inline-block weirdness */
 			font-size: 0;
+
 			.column, [class*="span-"], [class*="column-"] {
 				display: inline-block;
 				-webkit-box-sizing: border-box;
@@ -47,45 +46,50 @@
 				-ms-box-sizing: border-box;
 				-o-box-sizing: border-box;
 				box-sizing: border-box;
-				padding-left: @gutterWidth;
-				font-size: @gridFontsize;
 				min-height: 1px; /* prevent collapsing columns */
 				vertical-align: top;
+				font-size: @gridFontsize;
 				letter-spacing: 0; /* Restore letter spacing. */
 				*display: inline; /* For IE6/IE7 */
 				*zoom: 1; /* For IE6/IE7 */	
-			}
-			&.no-spacing {
-				margin-left: 0;
-				.column, [class*="span-"], [class*="column-"] {
-					padding-left: 0;
-				}
 			}
 			&.center {
 				text-align: center;
 			}
 		}
-		.reset (@resetGutterWidth) {
+	}
+	
+	.core (@namespace, @gutterWidth, @gridColumns, @withPrefix, @withSuffix) {
+		// define
+		.base (@gutterWidth){
 			.row {
-				margin-left: 0 - @resetGutterWidth;
+				margin-left: 0 - @gutterWidth;
 				.column, [class*="span-"], [class*="column-"] {
-					padding-left: @resetGutterWidth;
+					padding-left: @gutterWidth;
 				}
 			}
 		}
-	}
-
-	.core (@namespace, @gridColumns, @withPrefix, @withSuffix) {
-		// define
+		.base (@gutterWidth) when (@namespace = ''){
+			.row {
+				&.no-spacing {
+					margin-left: 0;
+					.column, [class*="span-"], [class*="column-"] {
+						padding-left: 0;
+					}
+				}
+			}
+		}
+		
 		.spanX (@index) when (@index < @gridColumns + 1) {
 			(~".@{namespace}span-@{index}") {
 				.span (@index);
 			}
+			.span (@columns) {
+				width: (100% / @gridColumns) * @columns;
+			}
 			.spanX (@index + 1);
 		}
-		.span (@columns) {
-			width: (100% / @gridColumns) * @columns;
-		}
+		
 		.withPrefix (@withPrefix) when (@withPrefix = true) {
 			.prefixX (@index) when (@index < @gridColumns) {
 				(~".@{namespace}prefix-@{index}") {
@@ -98,6 +102,7 @@
 			}
 			.prefixX (1);
 		}
+
 		.withSuffix (@withSuffix) when (@withSuffix = true) {
 			.suffixX (@index) when (@index < @gridColumns) {
 				(~".@{namespace}suffix-@{index}") {
@@ -112,6 +117,7 @@
 		}
 
 		// generate
+		.base (@gutterWidth);
 		.spanX (1);
 		.withPrefix (@withPrefix);
 		.withSuffix (@withSuffix);

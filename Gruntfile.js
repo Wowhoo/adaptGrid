@@ -80,7 +80,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   // Default task.
-  grunt.registerTask('default', ['jshint','recess','concat']);
+  grunt.registerTask('default', ['jshint','less','concat']);
   grunt.registerTask('css', ['recess','concat']);
 
 
