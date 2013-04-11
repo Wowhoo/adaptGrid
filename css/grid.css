@@ -536,7 +536,8 @@
   .row .mobile-full {
     width: 100%;
   }
-  .row .mobile-half {
+  .row .mobile-half,
+  .row .mobile-two-fourth {
     width: 50%;
   }
   .row .mobile-third {
@@ -544,5 +545,11 @@
   }
   .row .mobile-two-third {
     width: 66.6666%;
+  }
+  .row .mobile-fourth {
+    width: 25%;
+  }
+  .row .mobile-three-fourth {
+    width: 75%;
   }
 }
