@@ -1,48 +1,37 @@
-// default screen grid generator
-
-
 #grid {
 	.generator(@gutterWidth, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
 		@namespace: '';
 
-		// define
-		.core(@core) when (@core = true){
-			#grid > .core(@namespace, @coreColumns, @coreWithPrefix, @coreWithSuffix);
-		}
-		.equalization(@equalization) when (@equalization = true){
-			#grid > .equalization(@namespace, @equalizationColumns);
-		}
-		.phrase(@phrase) when (@phrase = true){
-			#grid > .phrase(@namespace, @phraseColumns);
-		}
-
-		// generate
 		#grid > .base(@gutterWidth);
-		.core(@core);
-		.equalization(@equalization);
-		.phrase(@phrase);
+		#grid > ._generator(@namespace, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns);
 	}
 
 	.generator(@screenName, @breakpoint, @gutterWidth, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
-		@namespace: ~`"@{screenName}" + '-'`;
-		// define
-		.core(@core) when (@core = true){
-			#grid > .core(@namespace, @coreColumns, @coreWithPrefix, @coreWithSuffix);
-		}
-		.equalization(@equalization) when (@equalization = true){
-			#grid > .equalization(@namespace, @equalizationColumns);
-		}
-		.phrase(@phrase) when (@phrase = true){
-			#grid > .phrase(@namespace, @phraseColumns);
-		}
+		@namespace: ~`"@{screenName}" + '-'`;	
 
 		// generate
 		@media only screen and (max-width: @breakpoint) {
 			#grid > .base > .reset(@gutterWidth);
-			.core(@core);
-			.equalization(@equalization);
-			.phrase(@phrase);
+			#grid > ._generator(@namespace, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns);
 		}
+	}
+
+	._generator(@namespace, @core, @coreColumns, @coreWithPrefix, @coreWithSuffix, @equalization, @equalizationColumns, @phrase, @phraseColumns) {
+		// define
+		.core(@core) when (@core = true){
+			#grid > .core(@namespace, @coreColumns, @coreWithPrefix, @coreWithSuffix);
+		}
+		.equalization(@equalization) when (@equalization = true){
+			#grid > .equalization(@namespace, @equalizationColumns);
+		}
+		.phrase(@phrase) when (@phrase = true){
+			#grid > .phrase(@namespace, @phraseColumns);
+		}
+
+		// generate
+		.core(@core);
+		.equalization(@equalization);
+		.phrase(@phrase);
 	}
 
 	.base(@gutterWidth) {
@@ -119,7 +108,7 @@
 			}
 			.suffix (@columns) {
 				margin-right: (100% / @gridColumns) * @columns;
-			}	
+			}
 			.suffixX (1);
 		}
 
