@@ -19,14 +19,6 @@ module.exports = function(grunt) {
       options: {
         banner: '<%= banner %>',
         stripBanners: true
-      },
-      src: {
-        src: ['src/grid.less'],
-        dest: 'src/grid.less'
-      },
-      css: {
-        src: ['css/grid.css'],
-        dest: 'css/grid.css'
       }
     },
     uglify: {
@@ -55,7 +47,10 @@ module.exports = function(grunt) {
     less: {
       dist: {
         files: {
-          "css/grid.css": "src/grid.less"
+          "css/grid-basic.css": "generator/basic.less",
+          "css/grid-tiles.css": "generator/tiles.less",
+          "css/grid-phrase.css": "generator/phrase.less",
+          "css/grid-full.css": "generator/full.less",
         }
       }
     },
@@ -65,7 +60,7 @@ module.exports = function(grunt) {
           compile: true
         },
         files: {
-          'css/grid.css': ['src/grid.less']
+          'css/grid-full.css': ['generator/full.less']
         }
       }
     }

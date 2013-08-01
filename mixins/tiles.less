@@ -1,0 +1,20 @@
+#grid {
+	.tiles (@gridColumns) {
+		@namespace: ;
+		#grid > .tiles (@namespace, @gridColumns);
+	}
+	.tiles (@namespace, @gridColumns) {
+		// define
+		.columnX (@index) when (@index < @gridColumns + 1) {
+			.@{namespace}has-@{index} {
+				.column {
+					width: 100% / @index;
+				}
+			}
+			.columnX (@index + 1);
+		}
+
+		// generate
+		.columnX (1);
+	}
+}

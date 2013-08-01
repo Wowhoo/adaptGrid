@@ -1,0 +1,135 @@
+#grid {
+	.phrase (@columns) {
+		@namespace: ;
+		#grid > .phrase (@namespace, @columns);
+	}
+	.phrase (@namespace, full) {	
+		.row {
+			.@{namespace}full {
+				width: 100%;
+			}
+		}
+	}
+	.phrase (@namespace, half) {
+		.row {
+			.@{namespace}full {
+				width: 100%;
+			}
+			.@{namespace}half {
+				width: 50%;
+			}
+		}
+	}
+	.phrase (@namespace, third) {
+		.row {
+			.@{namespace}full {
+				width: 100%;
+			}
+			.@{namespace}half {
+				width: 50%;
+			}
+			.@{namespace}third {
+				width: 33.3333%;
+			}
+			.@{namespace}two-third {
+				width: 66.6666%;
+			}
+		}
+	}
+	.phrase (@namespace, fourth) {
+		.row {
+			.@{namespace}full {
+				width: 100%;
+			}
+			.@{namespace}half, .@{namespace}two-fourth {
+				width: 50%;
+			}
+			.@{namespace}third {
+				width: 33.3333%;
+			}
+			.@{namespace}two-third {
+				width: 66.6666%;
+			}
+			.@{namespace}fourth {
+				width: 25%;
+			}
+			.@{namespace}three-fourth {
+				width: 75%;
+			}
+		}
+	}
+	.phrase (@namespace, fifth) {
+		.row {
+			.@{namespace}full {
+				width: 100%;
+			}
+			.@{namespace}half, .@{namespace}two-fourth {
+				width: 50%;
+			}
+			.@{namespace}third {
+				width: 33.3333%;
+			}
+			.@{namespace}two-third {
+				width: 66.6666%;
+			}
+			.@{namespace}fourth {
+				width: 25%;
+			}
+			.@{namespace}three-fourth {
+				width: 75%;
+			}
+			.@{namespace}fifth {
+				width: 20%;
+			}
+			.@{namespace}two-fifth {
+				width: 40%;
+			}
+			.@{namespace}three-fifth {
+				width: 60%;
+			}
+			.@{namespace}four-fifth {
+				width: 80%;
+			}
+		}
+	}
+	.phrase (@namespace, sixth) {
+		.row {
+			.@{namespace}full {
+				width: 100%;
+			}
+			.@{namespace}half, .@{namespace}two-fourth, .@{namespace}three-sixth {
+				width: 50%;
+			}
+			.@{namespace}third, .@{namespace}two-sixth {
+				width: 33.3333%;
+			}
+			.@{namespace}two-third {
+				width: 66.6666%;
+			}
+			.@{namespace}fourth {
+				width: 25%;
+			}
+			.@{namespace}three-fourth {
+				width: 75%;
+			}
+			.@{namespace}fifth {
+				width: 20%;
+			}
+			.@{namespace}two-fifth {
+				width: 40%;
+			}
+			.@{namespace}three-fifth {
+				width: 60%;
+			}
+			.@{namespace}four-fifth {
+				width: 80%;
+			}
+			.@{namespace}sixth {
+				width: 16.6666%;
+			}
+			.@{namespace}five-sixth {
+				width: 83.3333%;
+			}
+		}
+	}
+}

@@ -1,0 +1,47 @@
+#grid {
+	.basic (@gridColumns, @withPrefix, @withSuffix) {
+		@namespace: ;
+		#grid > .basic (@namespace, @gridColumns, @withPrefix, @withSuffix);
+	}
+	.basic (@namespace, @gridColumns, @withPrefix, @withSuffix) {
+		.spanX (@index) when (@index < @gridColumns + 1) {
+			.@{namespace}span-@{index} {
+				.span (@index);
+			}
+			.span (@columns) {
+				width: (100% / @gridColumns) * @columns;
+			}
+			.spanX (@index + 1);
+		}
+		
+		.withPrefix (@withPrefix) when (@withPrefix = true) {
+			.prefixX (@index) when (@index < @gridColumns) {
+				.@{namespace}prefix-@{index} {
+					.prefix (@index);
+				}
+				.prefixX (@index + 1);
+			}
+			.prefix (@columns) {
+				margin-left: (100% / @gridColumns) * @columns;
+			}
+			.prefixX (1);
+		}
+
+		.withSuffix (@withSuffix) when (@withSuffix = true) {
+			.suffixX (@index) when (@index < @gridColumns) {
+				.@{namespace}suffix-@{index} {
+					.suffix (@index);
+				}
+				.suffixX (@index + 1);
+			}
+			.suffix (@columns) {
+				margin-right: (100% / @gridColumns) * @columns;
+			}
+			.suffixX (1);
+		}
+
+		.spanX (1);
+		.withPrefix (@withPrefix);
+		.withSuffix (@withSuffix);
+	}
+}

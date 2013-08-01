@@ -1,0 +1,13 @@
+@import "variables.less";
+@import "core.less";
+@import "../mixins/phrase.less";
+
+#grid > .phrase (@grid-phrase-columns);
+
+@media only screen and (max-width: @grid-tablet-breakpoint) {
+	#grid > .phrase (@grid-tablet-prefix, @grid-tablet-phrase-columns);
+}
+
+@media only screen and (max-width: @grid-mobile-breakpoint) {
+	#grid > .phrase (@grid-mobile-prefix, @grid-mobile-phrase-columns);
+}

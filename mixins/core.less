@@ -1,0 +1,49 @@
+#grid {
+	.core (@gutterWidth) {
+		.row {
+			overflow: hidden;
+			list-style: none;
+			letter-spacing: -4px; /* Fix inline-block weirdness */
+			font-size: 0;
+
+			&.no-spacing {
+				margin-left: 0;
+				.column, [class*="span-"], [class*="column-"] {
+					padding-left: 0;
+				}
+			}
+
+			&.center {
+				text-align: center;
+			}
+		}
+
+		.column, [class*="span-"], [class*="column-"] {
+			display: inline-block;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-ms-box-sizing: border-box;
+			-o-box-sizing: border-box;
+			box-sizing: border-box;
+			min-height: 1px; /* prevent collapsing columns */
+			vertical-align: top;
+			
+			font-size: @grid-fontsize;
+			letter-spacing: 0; /* Restore letter spacing. */
+			*display: inline; /* For IE6/IE7 */
+			*zoom: 1; /* For IE6/IE7 */	
+		}
+
+		.gutterWidth(@gutterWidth){
+			.row {
+				margin-left: 0 - @gutterWidth;
+			}
+
+			.column, [class*="span-"], [class*="column-"] {
+				padding-left: @gutterWidth;
+			}
+		}
+
+		.gutterWidth(@gutterWidth);
+	}
+}
