@@ -9,7 +9,12 @@
 				.span (@index);
 			}
 			.span (@columns) {
-				width: (100% / @gridColumns) * @columns;
+				@spanWidth: (100% / @gridColumns) * @columns;
+				width: @spanWidth - @grid-ie8-gutterWidth/2;
+				width: ~"-webkit-calc(@{spanWidth} - 20px)";
+				width:    ~"-moz-calc(@{spanWidth} - 20px)";
+				width:      ~"-o-calc(@{spanWidth} - 20px)";
+				width:         ~"calc(@{spanWidth} - 20px)";
 			}
 			.spanX (@index + 1);
 		}
@@ -22,7 +27,12 @@
 				.prefixX (@index + 1);
 			}
 			.prefix (@columns) {
-				margin-left: (100% / @gridColumns) * @columns;
+				@prefixWidth: (100% / @gridColumns) * @columns;
+				margin-left: @prefixWidth + @grid-ie8-gutterWidth/2;
+				margin-left: ~"-webkit-calc(@{prefixWidth} + 20px)";
+				margin-left:    ~"-moz-calc(@{prefixWidth} + 20px)";
+				margin-left:      ~"-o-calc(@{prefixWidth} + 20px)";
+				margin-left:         ~"calc(@{prefixWidth} + 20px)";
 			}
 			.prefixX (1);
 		}
@@ -36,6 +46,7 @@
 			}
 			.suffix (@columns) {
 				margin-right: (100% / @gridColumns) * @columns;
+				margin-right: (100% / @gridColumns) * @columns~"\9";
 			}
 			.suffixX (1);
 		}

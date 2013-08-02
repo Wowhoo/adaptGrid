@@ -8,7 +8,12 @@
 		.columnX (@index) when (@index < @gridColumns + 1) {
 			.@{namespace}has-@{index} {
 				.column {
-					width: 100% / @index;
+					@columnWidth: 100% / @index;
+					width: @columnWidth - @grid-ie8-gutterWidth/2;
+					width: ~"-webkit-calc(@{columnWidth} - 20px)";
+					width:    ~"-moz-calc(@{columnWidth} - 20px)";
+					width:      ~"-o-calc(@{columnWidth} - 20px)";
+					width:         ~"calc(@{columnWidth} - 20px)";
 				}
 			}
 			.columnX (@index + 1);

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Adapt Grid System</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="./css/grid-full.css">
+        <style type="text/css">
+        .row  p {
+          text-align: center;
+          background-color: #ccc;
+        }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- <div class="container" style="width:1000px"> -->
+        <div class="container">
+            <p>Adapt Grid system uses percentage for columns and rows. It is useful for different kind of devices.</p>
+            <p>Default: use <code>span-</code> to control width.</p>
+            <div class="row">
+               <div class="span-1"><p>1</p></div>
+               <div class="span-11"><p>11</p></div>
+            </div>
+            <div class="row">
+               <div class="span-2"><p>2</p></div>
+               <div class="span-10"><p>10</p></div>
+            </div>
+            <div class="row">
+               <div class="span-3"><p>3</p></div>
+               <div class="span-9"><p>9</p></div>
+            </div>
+            <div class="row">
+               <div class="span-4"><p>4</p></div>
+               <div class="span-8"><p>8</p></div>
+            </div>
+            <div class="row">
+               <div class="span-5"><p>5</p></div>
+               <div class="span-7"><p>7</p></div>
+            </div>
+            <div class="row">
+               <div class="span-6"><p>6</p></div>
+               <div class="span-6"><p>6</p></div>
+            </div>
+            <div class="row">
+               <div class="span-7"><p>7</p></div>
+               <div class="span-5"><p>5</p></div>
+            </div>
+            <div class="row">
+               <div class="span-8"><p>8</p></div>
+               <div class="span-4"><p>4</p></div>
+            </div>
+            <div class="row">
+               <div class="span-9"><p>9</p></div>
+               <div class="span-3"><p>3</p></div>
+            </div>
+            <div class="row">
+               <div class="span-10"><p>10</p></div>
+               <div class="span-2"><p>2</p></div>
+            </div>
+            <div class="row">
+               <div class="span-11"><p>11</p></div>
+               <div class="span-1"><p>1</p></div>
+            </div>
+            <p>Use <code>prefix-</code> and <code>suffix-</code> to make offset,and use <code>no-spacing</code> to eliminate the gutter:</p>
+            <div class="row no-spacing">
+                <div class="span-6 prefix-6 tablet-span-8 tablet-prefix-4 mobile-span-5 mobile-suffix-1"><p>pre-6 6</p></div>
+            </div>
+            <div class="row no-spacing">
+                <div class="span-6 suffix-6 tablet-span-8 tablet-suffix-4 mobile-span-5 mobile-prefix-1"><p>6 suf-6</p></div>
+            </div>              
+            <div class="row no-spacing">
+                <div class="span-2 prefix-1 suffix-1"><p>pre-1 2 suf-1</p></div>
+                <div class="span-2 prefix-1 suffix-1"><p>pre-1 2 suf-1</p></div>
+                <div class="span-2 prefix-1 suffix-1"><p>pre-1 2 suf-1</p></div>
+            </div>
+            <div class="row">
+                <div class="span-8 prefix-2 suffix-2"><p>pre-2 8 suf-2</p></div>
+            </div>
+            <div class="row center">
+              <div class="span-7"><p>7 center</p></div>
+            </div>
+            <div class="row center">
+              <div class="span-9"><p>9 center</p></div>
+            </div>
+            <div class="row center">
+              <div class="span-11"><p>11 center</p></div>
+            </div>
+           <p>Resize the browser to see the example layouts chang.There is currently two breakpoint.</p>
+           <p>With tablet classes: <code>.tablet-full</code>,<code>.tablet-half</code>,<code>.tablet-two-thirds</code>,<code>.tablet-third</code>.</p>
+           <p>With mobile classes: <code>.mobile-half</code>,<code>.mobile-two-thirds</code>,<code>.mobile-third</code>.</p>
+            <div class="row">
+                <div class="span-6 tablet-span-12"><p>6 tablet-span-12</p></div>
+                <div class="span-3 tablet-span-6"><p>3 tablet-span-6</p></div>
+                <div class="span-3 tablet-span-6"><p>3 tablet-span-6</p></div>
+            </div>
+            <div class="row">
+                <div class="span-5 tablet-span-12"><p>5 tablet-span-12</p></div>
+                <div class="span-4 tablet-span-8 mobile-span-3"><p>4 tablet-span-8 mobile-span-6</p></div>
+                <div class="span-3 tablet-span-4 mobile-span-3"><p>3 tablet-span-4 mobile-span-6</p></div>
+            </div>
+            <p>Equalization: If the column's width is equal,use <code>has-</code> and <code>column</code> to control the number of columns.</p>
+            <div class="row has-2">
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+            </div>
+            <div class="row has-12">
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+                <div class="column"><p>eq</p></div>
+            </div>
+            <p>Also,there is two breakpoint:</p>
+            <p>With tablet classes: <code>.tablet-has-</code>.</p>
+            <p>With mobile classes: <code>.mobile-has-</code>.</p>
+            <div class="row has-8 tablet-has-4 mobile-has-2">
+              <div class="column"><p>eq</p></div>
+              <div class="column"><p>eq</p></div>
+              <div class="column"><p>eq</p></div>
+              <div class="column"><p>eq</p></div>
+              <div class="column"><p>eq</p></div>
+              <div class="column"><p>eq</p></div>
+              <div class="column"><p>eq</p></div>
+              <div class="column"><p>eq</p></div>
+            </div>
+            <p>SimplifyGrid:</p>
+            <div class="row">
+              <div class="column sixth tablet-third mobile-half"><p>eq</p></div>
+              <div class="column sixth tablet-two-third mobile-half"><p>eq</p></div>
+              <div class="column sixth tablet-three-fourth mobile-full"><p>eq</p></div>
+               <div class="column sixth tablet-fourth mobile-full"><p>eq</p></div>
+              <div class="column sixth tablet-half mobile-half"><p>eq</p></div>
+              <div class="column sixth tablet-half mobile-half"><p>eq</p></div>
+            </div>
+
+            <p>AllInOne:</p>
+            <div class="row">
+              <div class="column full"><p>eq</p></div>
+              <div class="column half"><p>eq</p></div>
+              <div class="column half"><p>eq</p></div>
+               <div class="column two-third"><p>eq</p></div>
+              <div class="column third"><p>eq</p></div>
+              <div class="column three-fourth"><p>eq</p></div>
+              <div class="column fourth"><p>eq</p></div>
+            </div>
+        </div>
+    </body> 
+</html>

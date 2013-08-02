@@ -1,17 +1,12 @@
 #grid {
 	.core (@gutterWidth) {
 		.row {
+			letter-spacing: -0.31em;
+			word-spacing: -0.43em;
+			*letter-spacing: normal;
+    		*word-spacing: -0.43em;
 			overflow: hidden;
 			list-style: none;
-			letter-spacing: -4px; /* Fix inline-block weirdness */
-			font-size: 0;
-
-			&.no-spacing {
-				margin-left: 0;
-				.column, [class*="span-"], [class*="column-"] {
-					padding-left: 0;
-				}
-			}
 
 			&.center {
 				text-align: center;
@@ -28,8 +23,8 @@
 			min-height: 1px; /* prevent collapsing columns */
 			vertical-align: top;
 			
-			font-size: @grid-fontsize;
-			letter-spacing: 0; /* Restore letter spacing. */
+    		letter-spacing: normal;
+    		word-spacing: normal;
 			*display: inline; /* For IE6/IE7 */
 			*zoom: 1; /* For IE6/IE7 */	
 		}
@@ -37,10 +32,12 @@
 		.gutterWidth(@gutterWidth){
 			.row {
 				margin-left: 0 - @gutterWidth;
+				margin-left: (0 - @grid-ie8-gutterWidth/2)~"\9";
 			}
 
 			.column, [class*="span-"], [class*="column-"] {
-				padding-left: @gutterWidth;
+				margin-left: @gutterWidth;
+				margin-left: @grid-ie8-gutterWidth/2~"\9";
 			}
 		}
 

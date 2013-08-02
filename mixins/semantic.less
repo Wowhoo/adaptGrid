@@ -1,29 +1,31 @@
+@import "../generator/variables.less";
+
 #semantic {
 	// row
 	.row(@spans:@spans) {
-		display: block;
-		width: @totalWidth*((@gutterWidth + @gridsystemWidth)/@gridsystemWidth);
-		margin: 0 @totalWidth*(((@gutterWidth*.5)/@gridsystemWidth)*-1);
-		// *width: @totalWidth*((@gutterWidth + @gridsystemWidth)/@gridsystemWidth)-@correction;
-		// *margin: 0 @totalWidth*(((@gutterWidth*.5)/@gridsystemWidth)*-1)-@correction;
-		&:before,
-	  	&:after {
-	      	content: "";
-	      	display: table;
-	  	}
-	  	&:after {
-	      	clear: both;
-	  	}
+		letter-spacing: -0.31em;
+		word-spacing: -0.43em;
+		*letter-spacing: normal;
+		*word-spacing: -0.43em;
+		overflow: hidden;
+		list-style: none;
 	}
 
 	// span
 	.span(@x,@spans:@spans) {
-		display: inline;
-		float: left;
-		width: @totalWidth*((((@gutterWidth+@spanWidth)*@x)-@gutterWidth) / @gridsystemWidth);
-		margin: 0 @totalWidth*((@gutterWidth*.5)/@gridsystemWidth);
-		// *width: @totalWidth*((((@gutterWidth+@spanWidth)*@x)-@gutterWidth) / @gridsystemWidth)-@correction;
-		// *margin: 0 @totalWidth*((@gutterWidth*.5)/@gridsystemWidth)-@correction;
+		display: inline-block;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		box-sizing: border-box;
+		min-height: 1px; /* prevent collapsing columns */
+		vertical-align: top;
+		
+		letter-spacing: normal;
+		word-spacing: normal;
+		*display: inline; /* For IE6/IE7 */
+		*zoom: 1; /* For IE6/IE7 */
 	}
 
 	// push will make moves to the right

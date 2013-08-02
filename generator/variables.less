@@ -2,6 +2,7 @@
 // --------------------------------------------------
 @grid-fontsize:  16px;
 @grid-gutterWidth: 20px;
+@grid-ie8-gutterWidth: 2%;
 
 @grid-tablet-prefix: tablet-;
 @grid-tablet-breakpoint: 768px;
@@ -11,7 +12,7 @@
 @grid-mobile-breakpoint: 480px;
 @grid-mobile-gutterWidth: 10px;
 
-// basic
+// Basic
 // --------------------------------------------------
 @grid-basic-columns: 12;
 @grid-basic-withPrefix: true;
@@ -25,7 +26,7 @@
 @grid-mobile-basic-withPrefix: true;
 @grid-mobile-basic-withSuffix: true;
 
-// tiles
+// Tiles
 // --------------------------------------------------
 @grid-tiles-columns: 12;
 
@@ -33,10 +34,18 @@
 
 @grid-mobile-tiles-columns: 6;
 
-// phrase
+// Phrase
 // --------------------------------------------------
 @grid-phrase-columns: sixth;
 
 @grid-tablet-phrase-columns: sixth;
 
 @grid-mobile-phrase-columns: fourth;
+
+// Semantic
+// --------------------------------------------------
+@spans: 12;
+@semantic-spanWidth: 60;
+@gutterWidth: 20;
+@gridsystemWidth: (@semantic-spanWidth*@spans) + (@gutterWidth*@spans) * 1px;
+@totalWidth: 100%;
