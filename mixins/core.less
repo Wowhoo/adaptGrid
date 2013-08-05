@@ -1,5 +1,5 @@
 #grid {
-	.core (@gutterWidth) {
+	.core (@gutterWidth, @grid-noGutterWidth) {
 		.row {
 			letter-spacing: -0.31em;
 			word-spacing: -0.43em;
@@ -31,16 +31,24 @@
 
 		.gutterWidth(@gutterWidth){
 			.row {
-				margin: 0 (0 - @gutterWidth);
-				margin: 0 (0 - @grid-ie8-gutterWidth)~"\9";
+				margin: 0 (0 - @gutterWidth/2);
 			}
 
 			.column, [class*="span-"], [class*="column-"] {
-				margin: 0 @gutterWidth;
-				margin: 0 @grid-ie8-gutterWidth~"\9";
+				margin: 0 @gutterWidth/2;
+			}
+		}
+		
+		.noGutterWidth(@grid-noGutterWidth) when (@grid-noGutterWidth = true) {
+			.no-gutter {
+				margin: 0;
+				.column, [class*="span-"], [class*="column-"] {
+					margin: 0;
+				}
 			}
 		}
 
 		.gutterWidth(@gutterWidth);
+		.noGutterWidth(@grid-noGutterWidth);
 	}
 }

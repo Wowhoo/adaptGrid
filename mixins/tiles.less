@@ -10,10 +10,10 @@
 				.column {
 					@columnWidth: 100% / @index;
 					width: @columnWidth - @grid-ie8-gutterWidth;
-					width: ~"-webkit-calc(@{columnWidth} - 20px)";
-					width:    ~"-moz-calc(@{columnWidth} - 20px)";
-					width:      ~"-o-calc(@{columnWidth} - 20px)";
-					width:         ~"calc(@{columnWidth} - 20px)";
+					width: ~"-webkit-calc(@{columnWidth} - @{grid-gutterWidth})";
+					width:    ~"-moz-calc(@{columnWidth} - @{grid-gutterWidth})";
+					width:      ~"-o-calc(@{columnWidth} - @{grid-gutterWidth})";
+					width:         ~"calc(@{columnWidth} - @{grid-gutterWidth})";
 				}
 			}
 			.columnX (@index + 1);
@@ -21,12 +21,9 @@
 		.withNoGutter (@grid-tiles-withNoGutter) when (@grid-tiles-withNoGutter = true) {
 			.columnX (@index) when (@index < @gridColumns + 1) {
 				.@{namespace}has-@{index} {
-					&.no-spacing {
-						margin: 0;
-
+					&.no-gutter {
 						.column {
 							width: 100% / @index;
-							margin: 0;
 						}
 					}
 				}

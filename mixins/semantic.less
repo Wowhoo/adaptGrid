@@ -2,7 +2,7 @@
 
 #semantic {
 	// row
-	.row(@grid-semantic-span:@grid-semantic-span) {
+	.row(@grid-semantic-column:@grid-semantic-column) {
 		letter-spacing: -0.31em;
 		word-spacing: -0.43em;
 		*letter-spacing: normal;
@@ -14,8 +14,8 @@
 	}
 
 	// span
-	.span(@x,@grid-semantic-span:@grid-semantic-span) {
-		@spanWidth: @grid-semantic-spanWidth * @x;
+	.span(@x,@grid-semantic-column:@grid-semantic-column) {
+		@spanWidth: (@grid-semantic-totalWidth / @grid-semantic-column) * @x;
 		display: inline-block;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -31,25 +31,25 @@
 		*zoom: 1; /* For IE6/IE7 */
 
 		width: @spanWidth - @grid-ie8-gutterWidth;
-		width: ~"-webkit-calc(@{spanWidth} - 20px)";
-		width:    ~"-moz-calc(@{spanWidth} - 20px)";
-		width:      ~"-o-calc(@{spanWidth} - 20px)";
-		width:         ~"calc(@{spanWidth} - 20px)";
+		width: ~"-webkit-calc(@{spanWidth} - @{grid-gutterWidth})";
+		width:    ~"-moz-calc(@{spanWidth} - @{grid-gutterWidth})";
+		width:      ~"-o-calc(@{spanWidth} - @{grid-gutterWidth})";
+		width:         ~"calc(@{spanWidth} - @{grid-gutterWidth})";
 		margin-left: @grid-semantic-gutterWidth;
 	}
 
 	// push will make moves to the right
 	.push(@offset:1) {
-		@pushWidth: @grid-semantic-spanWidth * @offset;
+		@pushWidth: (@grid-semantic-totalWidth / @grid-semantic-column) * @offset;
 		margin-left: @pushWidth + @grid-ie8-gutterWidth;
-		margin-left: ~"-webkit-calc(@{pushWidth} + 20px)";
-		margin-left:    ~"-moz-calc(@{pushWidth} + 20px)";
-		margin-left:      ~"-o-calc(@{pushWidth} + 20px)";
-		margin-left:         ~"calc(@{pushWidth} + 20px)";
+		margin-left: ~"-webkit-calc(@{pushWidth} + @{grid-gutterWidth})";
+		margin-left:    ~"-moz-calc(@{pushWidth} + @{grid-gutterWidth})";
+		margin-left:      ~"-o-calc(@{pushWidth} + @{grid-gutterWidth})";
+		margin-left:         ~"calc(@{pushWidth} + @{grid-gutterWidth})";
 	}
 
 	// pull will make moves to the left
 	.pull(@offset:1) {
-		margin-right: @grid-semantic-spanWidth * @offset;
+		margin-right: (@grid-semantic-totalWidth / @grid-semantic-column) * @offset;
 	}
 }

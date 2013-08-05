@@ -1,8 +1,9 @@
 // Variables
 // --------------------------------------------------
 @grid-fontsize:  16px;
-@grid-gutterWidth: 10px;
+@grid-gutterWidth: 20px;
 @grid-ie8-gutterWidth: 2%;
+@grid-noGutterWidth: true;
 
 @grid-tablet-prefix: tablet-;
 @grid-tablet-breakpoint: 768px;
@@ -22,10 +23,12 @@
 @grid-tablet-basic-columns: 10;
 @grid-tablet-basic-withPrefix: true;
 @grid-tablet-basic-withSuffix: true;
+@grid-tablet-basic-withNoGutter: true;
 
 @grid-mobile-basic-columns: 6;
 @grid-mobile-basic-withPrefix: true;
 @grid-mobile-basic-withSuffix: true;
+@grid-mobile-basic-withNoGutter: true;
 
 // Tiles
 // --------------------------------------------------
@@ -33,21 +36,24 @@
 @grid-tiles-withNoGutter: true;
 
 @grid-tablet-tiles-columns: 12;
+@grid-tablet-tiles-withNoGutter: true;
 
 @grid-mobile-tiles-columns: 6;
+@grid-mobile-tiles-withNoGutter: true;
 
 // Phrase
 // --------------------------------------------------
-@grid-phrase-columns: sixth;
+@grid-phrase-columns: 6;
 @grid-phrase-withNoGutter: true;
 
-@grid-tablet-phrase-columns: sixth;
+@grid-tablet-phrase-columns: 6;
+@grid-tablet-phrase-withNoGutter: true;
 
-@grid-mobile-phrase-columns: fourth;
+@grid-mobile-phrase-columns: 4;
+@grid-mobile-phrase-withNoGutter: true;
 
 // Semantic
 // --------------------------------------------------
-@grid-semantic-span: 12;
-@grid-semantic-spanWidth: 100% / @grid-semantic-span;
+@grid-semantic-column: 12;
 @grid-semantic-gutterWidth: 20px;
 @grid-semantic-totalWidth: 100%;
