@@ -1,275 +1,445 @@
 #grid {
-	.phrase (@columns) {
+	.phrase (@columns, @grid-phrase-withNoGutter) {
 		@namespace: ;
-		#grid > .phrase (@namespace, @columns);
+		#grid > .phrase (@namespace, @columns, @grid-phrase-withNoGutter);
 	}
-	.phrase (@namespace, full) {	
+	.phrase (@namespace, full, @grid-phrase-withNoGutter) {	
 		.row {
 			.@{namespace}full {
-				width: 100% - @grid-ie8-gutterWidth/2;
+				width: 100% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(100% - 20px)";
 				width:    ~"-moz-calc(100% - 20px)";
 				width:      ~"-o-calc(100% - 20px)";
 				width:         ~"calc(100% - 20px)";
 			}
+			.withNoWidth (@grid-phrase-withNoGutter) when (@grid-phrase-withNoGutter = true) {
+				&.no-spacing {
+					.@{namespace}full {
+						width: 100%;
+						margin: 0;
+					}
+				}
+			}
+			.withNoWidth (@grid-phrase-withNoGutter);
 		}
 	}
-	.phrase (@namespace, half) {
+	.phrase (@namespace, half, @grid-phrase-withNoGutter) {
 		.row {
 			.@{namespace}full {
-				width: 100% - @grid-ie8-gutterWidth/2;
+				width: 100% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(100% - 20px)";
 				width:    ~"-moz-calc(100% - 20px)";
 				width:      ~"-o-calc(100% - 20px)";
 				width:         ~"calc(100% - 20px)";
 			}
 			.@{namespace}half {
-				width: 50% - @grid-ie8-gutterWidth/2;
+				width: 50% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(50% - 20px)";
 				width:    ~"-moz-calc(50% - 20px)";
 				width:      ~"-o-calc(50% - 20px)";
 				width:         ~"calc(50% - 20px)";
 			}
+			.withNoWidth (@grid-phrase-withNoGutter) when (@grid-phrase-withNoGutter = true) {
+				&.no-spacing {					
+					.@{namespace}full {
+						width: 100%;
+						margin: 0;
+					}
+					.@{namespace}half {
+						width: 50%;
+						margin: 0;
+					}
+				}
+			}
+			.withNoWidth (@grid-phrase-withNoGutter);
 		}
 	}
-	.phrase (@namespace, third) {
+	.phrase (@namespace, third, @grid-phrase-withNoGutter) {
 		.row {
 			.@{namespace}full {
-				width: 100% - @grid-ie8-gutterWidth/2;
+				width: 100% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(100% - 20px)";
 				width:    ~"-moz-calc(100% - 20px)";
 				width:      ~"-o-calc(100% - 20px)";
 				width:         ~"calc(100% - 20px)";
 			}
 			.@{namespace}half {
-				width: 50% - @grid-ie8-gutterWidth/2;
+				width: 50% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(50% - 20px)";
 				width:    ~"-moz-calc(50% - 20px)";
 				width:      ~"-o-calc(50% - 20px)";
 				width:         ~"calc(50% - 20px)";
 			}
 			.@{namespace}third {
-				width: 33.3333% - @grid-ie8-gutterWidth/2;
+				width: 33.3333% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(33.3333% - 20px)";
 				width:    ~"-moz-calc(33.3333% - 20px)";
 				width:      ~"-o-calc(33.3333% - 20px)";
 				width:         ~"calc(33.3333% - 20px)";
 			}
 			.@{namespace}two-third {
-				width: 66.6666% - @grid-ie8-gutterWidth/2;
+				width: 66.6666% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(66.6666% - 20px)";
 				width:    ~"-moz-calc(66.6666% - 20px)";
 				width:      ~"-o-calc(66.6666% - 20px)";
 				width:         ~"calc(66.6666% - 20px)";
 			}
+			.withNoWidth (@grid-phrase-withNoGutter) when (@grid-phrase-withNoGutter = true) {
+				&.no-spacing {					
+					.@{namespace}full {
+						width: 100%;
+						margin: 0;
+					}
+					.@{namespace}half {
+						width: 50%;
+						margin: 0;
+					}
+					.@{namespace}third {
+						width: 33.3333%;
+						margin: 0;
+					}
+					.@{namespace}two-third {
+						width: 66.6666%;
+						margin: 0;
+					}
+				}
+			}
+			.withNoWidth (@grid-phrase-withNoGutter);
 		}
 	}
-	.phrase (@namespace, fourth) {
+	.phrase (@namespace, fourth, @grid-phrase-withNoGutter) {
 		.row {
 			.@{namespace}full {
-				width: 100% - @grid-ie8-gutterWidth/2;
+				width: 100% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(100% - 20px)";
 				width:    ~"-moz-calc(100% - 20px)";
 				width:      ~"-o-calc(100% - 20px)";
 				width:         ~"calc(100% - 20px)";
 			}
 			.@{namespace}half, .@{namespace}two-fourth {
-				width: 50% - @grid-ie8-gutterWidth/2;
+				width: 50% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(50% - 20px)";
 				width:    ~"-moz-calc(50% - 20px)";
 				width:      ~"-o-calc(50% - 20px)";
 				width:         ~"calc(50% - 20px)";
 			}
 			.@{namespace}third {
-				width: 33.3333% - @grid-ie8-gutterWidth/2;
+				width: 33.3333% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(33.3333% - 20px)";
 				width:    ~"-moz-calc(33.3333% - 20px)";
 				width:      ~"-o-calc(33.3333% - 20px)";
 				width:         ~"calc(33.3333% - 20px)";
 			}
 			.@{namespace}two-third {
-				width: 66.6666% - @grid-ie8-gutterWidth/2;
+				width: 66.6666% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(66.6666% - 20px)";
 				width:    ~"-moz-calc(66.6666% - 20px)";
 				width:      ~"-o-calc(66.6666% - 20px)";
 				width:         ~"calc(66.6666% - 20px)";
 			}
 			.@{namespace}fourth {
-				width: 25% - @grid-ie8-gutterWidth/2;
+				width: 25% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(25% - 20px)";
 				width:    ~"-moz-calc(25% - 20px)";
 				width:      ~"-o-calc(25% - 20px)";
 				width:         ~"calc(25% - 20px)";
 			}
 			.@{namespace}three-fourth {
-				width: 75% - @grid-ie8-gutterWidth/2;
+				width: 75% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(75% - 20px)";
 				width:    ~"-moz-calc(75% - 20px)";
 				width:      ~"-o-calc(75% - 20px)";
 				width:         ~"calc(75% - 20px)";
 			}
+			.withNoWidth (@grid-phrase-withNoGutter) when (@grid-phrase-withNoGutter = true) {
+				&.no-spacing {					
+					.@{namespace}full {
+						width: 100%;
+						margin: 0;
+					}
+					.@{namespace}half {
+						width: 50%;
+						margin: 0;
+					}
+					.@{namespace}third {
+						width: 33.3333%;
+						margin: 0;
+					}
+					.@{namespace}two-third {
+						width: 66.6666%;
+						margin: 0;
+					}
+					.@{namespace}fourth {
+						width: 25%;
+						margin: 0;
+					}
+					.@{namespace}three-fourth {
+						width: 75%;
+						margin: 0;
+					}
+				}
+			}
+			.withNoWidth (@grid-phrase-withNoGutter);
 		}
 	}
-	.phrase (@namespace, fifth) {
+	.phrase (@namespace, fifth, @grid-phrase-withNoGutter) {
 		.row {
 			.@{namespace}full {
-				width: 100% - @grid-ie8-gutterWidth/2;
+				width: 100% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(100% - 20px)";
 				width:    ~"-moz-calc(100% - 20px)";
 				width:      ~"-o-calc(100% - 20px)";
 				width:         ~"calc(100% - 20px)";
 			}
 			.@{namespace}half, .@{namespace}two-fourth {
-				width: 50% - @grid-ie8-gutterWidth/2;
+				width: 50% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(50% - 20px)";
 				width:    ~"-moz-calc(50% - 20px)";
 				width:      ~"-o-calc(50% - 20px)";
 				width:         ~"calc(50% - 20px)";
 			}
 			.@{namespace}third {
-				width: 33.3333% - @grid-ie8-gutterWidth/2;
+				width: 33.3333% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(33.3333% - 20px)";
 				width:    ~"-moz-calc(33.3333% - 20px)";
 				width:      ~"-o-calc(33.3333% - 20px)";
 				width:         ~"calc(33.3333% - 20px)";
 			}
 			.@{namespace}two-third {
-				width: 66.6666% - @grid-ie8-gutterWidth/2;
+				width: 66.6666% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(66.6666% - 20px)";
 				width:    ~"-moz-calc(66.6666% - 20px)";
 				width:      ~"-o-calc(66.6666% - 20px)";
 				width:         ~"calc(66.6666% - 20px)";
 			}
 			.@{namespace}fourth {
-				width: 25% - @grid-ie8-gutterWidth/2;
+				width: 25% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(25% - 20px)";
 				width:    ~"-moz-calc(25% - 20px)";
 				width:      ~"-o-calc(25% - 20px)";
 				width:         ~"calc(25% - 20px)";
 			}
 			.@{namespace}three-fourth {
-				width: 75% - @grid-ie8-gutterWidth/2;
+				width: 75% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(75% - 20px)";
 				width:    ~"-moz-calc(75% - 20px)";
 				width:      ~"-o-calc(75% - 20px)";
 				width:         ~"calc(75% - 20px)";
 			}
 			.@{namespace}fifth {
-				width: 20% - @grid-ie8-gutterWidth/2;
+				width: 20% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(20% - 20px)";
 				width:    ~"-moz-calc(20% - 20px)";
 				width:      ~"-o-calc(20% - 20px)";
 				width:         ~"calc(20% - 20px)";
 			}
 			.@{namespace}two-fifth {
-				width: 40% - @grid-ie8-gutterWidth/2;
+				width: 40% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(40% - 20px)";
 				width:    ~"-moz-calc(40% - 20px)";
 				width:      ~"-o-calc(40% - 20px)";
 				width:         ~"calc(40% - 20px)";
 			}
 			.@{namespace}three-fifth {
-				width: 60% - @grid-ie8-gutterWidth/2;
+				width: 60% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(60% - 20px)";
 				width:    ~"-moz-calc(60% - 20px)";
 				width:      ~"-o-calc(60% - 20px)";
 				width:         ~"calc(60% - 20px)";
 			}
 			.@{namespace}four-fifth {
-				width: 80% - @grid-ie8-gutterWidth/2;
+				width: 80% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(80% - 20px)";
 				width:    ~"-moz-calc(80% - 20px)";
 				width:      ~"-o-calc(80% - 20px)";
 				width:         ~"calc(80% - 20px)";
 			}
+			.withNoWidth (@grid-phrase-withNoGutter) when (@grid-phrase-withNoGutter = true) {
+				&.no-spacing {					
+					.@{namespace}full {
+						width: 100%;
+						margin: 0;
+					}
+					.@{namespace}half {
+						width: 50%;
+						margin: 0;
+					}
+					.@{namespace}third {
+						width: 33.3333%;
+						margin: 0;
+					}
+					.@{namespace}two-third {
+						width: 66.6666%;
+						margin: 0;
+					}
+					.@{namespace}fourth {
+						width: 25%;
+						margin: 0;
+					}
+					.@{namespace}three-fourth {
+						width: 75%;
+						margin: 0;
+					}
+					.@{namespace}fifth {
+						width: 20%;
+						margin: 0;
+					}
+					.@{namespace}two-fifth {
+						width: 40%;
+						margin: 0;
+					}
+					.@{namespace}three-fifth {
+						width: 60%;
+						margin: 0;
+					}
+					.@{namespace}four-fifth {
+						width: 80%;
+						margin: 0;
+					}
+				}
+			}
+			.withNoWidth (@grid-phrase-withNoGutter);
 		}
 	}
-	.phrase (@namespace, sixth) {
+	.phrase (@namespace, sixth, @grid-phrase-withNoGutter) {
 		.row {
 			.@{namespace}full {
-				width: 100% - @grid-ie8-gutterWidth/2;
+				width: 100% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(100% - 20px)";
 				width:    ~"-moz-calc(100% - 20px)";
 				width:      ~"-o-calc(100% - 20px)";
 				width:         ~"calc(100% - 20px)";
 			}
 			.@{namespace}half, .@{namespace}two-fourth, .@{namespace}three-sixth {
-				width: 50% - @grid-ie8-gutterWidth/2;
+				width: 50% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(50% - 20px)";
 				width:    ~"-moz-calc(50% - 20px)";
 				width:      ~"-o-calc(50% - 20px)";
 				width:         ~"calc(50% - 20px)";
 			}
 			.@{namespace}third, .@{namespace}two-sixth {
-				width: 33.3333% - @grid-ie8-gutterWidth/2;
+				width: 33.3333% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(33.3333% - 20px)";
 				width:    ~"-moz-calc(33.3333% - 20px)";
 				width:      ~"-o-calc(33.3333% - 20px)";
 				width:         ~"calc(33.3333% - 20px)";
 			}
 			.@{namespace}two-third {
-				width: 66.6666% - @grid-ie8-gutterWidth/2;
+				width: 66.6666% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(66.6666% - 20px)";
 				width:    ~"-moz-calc(66.6666% - 20px)";
 				width:      ~"-o-calc(66.6666% - 20px)";
 				width:         ~"calc(66.6666% - 20px)";
 			}
 			.@{namespace}fourth {
-				width: 25% - @grid-ie8-gutterWidth/2;
+				width: 25% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(25% - 20px)";
 				width:    ~"-moz-calc(25% - 20px)";
 				width:      ~"-o-calc(25% - 20px)";
 				width:         ~"calc(25% - 20px)";
 			}
 			.@{namespace}three-fourth {
-				width: 75% - @grid-ie8-gutterWidth/2;
+				width: 75% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(75% - 20px)";
 				width:    ~"-moz-calc(75% - 20px)";
 				width:      ~"-o-calc(75% - 20px)";
 				width:         ~"calc(75% - 20px)";
 			}
 			.@{namespace}fifth {
-				width: 20% - @grid-ie8-gutterWidth/2;
+				width: 20% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(20% - 20px)";
 				width:    ~"-moz-calc(20% - 20px)";
 				width:      ~"-o-calc(20% - 20px)";
 				width:         ~"calc(20% - 20px)";
 			}
 			.@{namespace}two-fifth {
-				width: 40% - @grid-ie8-gutterWidth/2;
+				width: 40% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(40% - 20px)";
 				width:    ~"-moz-calc(40% - 20px)";
 				width:      ~"-o-calc(40% - 20px)";
 				width:         ~"calc(40% - 20px)";
 			}
 			.@{namespace}three-fifth {
-				width: 60% - @grid-ie8-gutterWidth/2;
+				width: 60% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(60% - 20px)";
 				width:    ~"-moz-calc(60% - 20px)";
 				width:      ~"-o-calc(60% - 20px)";
 				width:         ~"calc(60% - 20px)";
 			}
 			.@{namespace}four-fifth {
-				width: 80% - @grid-ie8-gutterWidth/2;
+				width: 80% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(80% - 20px)";
 				width:    ~"-moz-calc(80% - 20px)";
 				width:      ~"-o-calc(80% - 20px)";
 				width:         ~"calc(80% - 20px)";
 			}
 			.@{namespace}sixth {
-				width: 16.6666% - @grid-ie8-gutterWidth/2;
+				width: 16.6666% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(16.6666% - 20px)";
 				width:    ~"-moz-calc(16.6666% - 20px)";
 				width:      ~"-o-calc(16.6666% - 20px)";
 				width:         ~"calc(16.6666% - 20px)";
 			}
 			.@{namespace}five-sixth {
-				width: 83.3333% - @grid-ie8-gutterWidth/2;
+				width: 83.3333% - @grid-ie8-gutterWidth;
 				width: ~"-webkit-calc(83.3333% - 20px)";
 				width:    ~"-moz-calc(83.3333% - 20px)";
 				width:      ~"-o-calc(83.3333% - 20px)";
 				width:         ~"calc(83.3333% - 20px)";
 			}
+			.withNoWidth (@grid-phrase-withNoGutter) when (@grid-phrase-withNoGutter = true) {
+				&.no-spacing {					
+					.@{namespace}full {
+						width: 100%;
+						margin: 0;
+					}
+					.@{namespace}half {
+						width: 50%;
+						margin: 0;
+					}
+					.@{namespace}third {
+						width: 33.3333%;
+						margin: 0;
+					}
+					.@{namespace}two-third {
+						width: 66.6666%;
+						margin: 0;
+					}
+					.@{namespace}fourth {
+						width: 25%;
+						margin: 0;
+					}
+					.@{namespace}three-fourth {
+						width: 75%;
+						margin: 0;
+					}
+					.@{namespace}fifth {
+						width: 20%;
+						margin: 0;
+					}
+					.@{namespace}two-fifth {
+						width: 40%;
+						margin: 0;
+					}
+					.@{namespace}three-fifth {
+						width: 60%;
+						margin: 0;
+					}
+					.@{namespace}four-fifth {
+						width: 80%;
+						margin: 0;
+					}
+					.@{namespace}sixth {
+						width: 16.6666%;
+						margin: 0;
+					}
+					.@{namespace}five-sixth {
+						width: 83.3333%;
+						margin: 0;
+					}
+				}
+			}
+			.withNoWidth (@grid-phrase-withNoGutter);
 		}
 	}
 }

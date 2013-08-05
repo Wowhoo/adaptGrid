@@ -1,15 +1,15 @@
 #grid {
-	.tiles (@gridColumns) {
+	.tiles (@gridColumns, @grid-tiles-withNoGutter) {
 		@namespace: ;
-		#grid > .tiles (@namespace, @gridColumns);
+		#grid > .tiles (@namespace, @gridColumns, @grid-tiles-withNoGutter);
 	}
-	.tiles (@namespace, @gridColumns) {
+	.tiles (@namespace, @gridColumns, @grid-tiles-withNoGutter) {
 		// define
 		.columnX (@index) when (@index < @gridColumns + 1) {
 			.@{namespace}has-@{index} {
 				.column {
 					@columnWidth: 100% / @index;
-					width: @columnWidth - @grid-ie8-gutterWidth/2;
+					width: @columnWidth - @grid-ie8-gutterWidth;
 					width: ~"-webkit-calc(@{columnWidth} - 20px)";
 					width:    ~"-moz-calc(@{columnWidth} - 20px)";
 					width:      ~"-o-calc(@{columnWidth} - 20px)";
@@ -18,8 +18,25 @@
 			}
 			.columnX (@index + 1);
 		}
+		.withNoGutter (@grid-tiles-withNoGutter) when (@grid-tiles-withNoGutter = true) {
+			.columnX (@index) when (@index < @gridColumns + 1) {
+				.@{namespace}has-@{index} {
+					&.no-spacing {
+						margin: 0;
+
+						.column {
+							width: 100% / @index;
+							margin: 0;
+						}
+					}
+				}
+				.columnX (@index + 1);
+			}
+			.columnX (1);
+		}
 
 		// generate
 		.columnX (1);
+		.withNoGutter (@grid-tiles-withNoGutter);
 	}
 }

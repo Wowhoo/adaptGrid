@@ -2,17 +2,20 @@
 
 #semantic {
 	// row
-	.row(@spans:@spans) {
+	.row(@grid-semantic-span:@grid-semantic-span) {
 		letter-spacing: -0.31em;
 		word-spacing: -0.43em;
 		*letter-spacing: normal;
 		*word-spacing: -0.43em;
 		overflow: hidden;
 		list-style: none;
+
+		margin-left: 0 - @grid-semantic-gutterWidth;
 	}
 
 	// span
-	.span(@x,@spans:@spans) {
+	.span(@x,@grid-semantic-span:@grid-semantic-span) {
+		@spanWidth: @grid-semantic-spanWidth * @x;
 		display: inline-block;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -26,15 +29,27 @@
 		word-spacing: normal;
 		*display: inline; /* For IE6/IE7 */
 		*zoom: 1; /* For IE6/IE7 */
+
+		width: @spanWidth - @grid-ie8-gutterWidth;
+		width: ~"-webkit-calc(@{spanWidth} - 20px)";
+		width:    ~"-moz-calc(@{spanWidth} - 20px)";
+		width:      ~"-o-calc(@{spanWidth} - 20px)";
+		width:         ~"calc(@{spanWidth} - 20px)";
+		margin-left: @grid-semantic-gutterWidth;
 	}
 
 	// push will make moves to the right
 	.push(@offset:1) {
-		margin-left: @totalWidth*(((@gutterWidth+@spanWidth)*@offset) / @gridsystemWidth) + @totalWidth*((@gutterWidth*.5)/@gridsystemWidth);
+		@pushWidth: @grid-semantic-spanWidth * @offset;
+		margin-left: @pushWidth + @grid-ie8-gutterWidth;
+		margin-left: ~"-webkit-calc(@{pushWidth} + 20px)";
+		margin-left:    ~"-moz-calc(@{pushWidth} + 20px)";
+		margin-left:      ~"-o-calc(@{pushWidth} + 20px)";
+		margin-left:         ~"calc(@{pushWidth} + 20px)";
 	}
 
 	// pull will make moves to the left
 	.pull(@offset:1) {
-		margin-right: @totalWidth*(((@gutterWidth+@spanWidth)*@offset) / @gridsystemWidth) + @totalWidth*((@gutterWidth*.5)/@gridsystemWidth);
+		margin-right: @grid-semantic-spanWidth * @offset;
 	}
 }

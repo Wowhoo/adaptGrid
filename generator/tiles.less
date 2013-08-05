@@ -2,12 +2,12 @@
 @import "core.less";
 @import "../mixins/tiles.less";
 
-#grid > .tiles (@grid-tiles-columns);
+#grid > .tiles (@grid-tiles-columns, @grid-tiles-withNoGutter);
 
 @media only screen and (max-width: @grid-tablet-breakpoint) {
-	#grid > .tiles (@grid-tablet-prefix, @grid-tablet-tiles-columns);
+	#grid > .tiles (@grid-tablet-prefix, @grid-tablet-tiles-columns, @grid-tiles-withNoGutter);
 }
 
 @media only screen and (max-width: @grid-mobile-breakpoint) {
-	#grid > .tiles (@grid-mobile-prefix, @grid-mobile-tiles-columns);
+	#grid > .tiles (@grid-mobile-prefix, @grid-mobile-tiles-columns, @grid-tiles-withNoGutter);
 }

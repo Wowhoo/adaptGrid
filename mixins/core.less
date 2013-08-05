@@ -31,13 +31,13 @@
 
 		.gutterWidth(@gutterWidth){
 			.row {
-				margin-left: 0 - @gutterWidth;
-				margin-left: (0 - @grid-ie8-gutterWidth/2)~"\9";
+				margin: 0 (0 - @gutterWidth);
+				margin: 0 (0 - @grid-ie8-gutterWidth)~"\9";
 			}
 
 			.column, [class*="span-"], [class*="column-"] {
-				margin-left: @gutterWidth;
-				margin-left: @grid-ie8-gutterWidth/2~"\9";
+				margin: 0 @gutterWidth;
+				margin: 0 @grid-ie8-gutterWidth~"\9";
 			}
 		}
 
