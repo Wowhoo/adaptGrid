@@ -1,55 +1,18 @@
 #grid {
 	.core (@gutter-width, @with-noGutter) {
 		.row {
-			letter-spacing: -0.31em; /* Webkit: collapse white-space between units */
-			*letter-spacing: normal; /* reset IE < 8 */
-			*word-spacing: -0.43em; /* IE < 8: collapse white-space between units */
-			text-rendering: optimizespeed; /* Webkit: fixes text-rendering: optimizeLegibility */
-			
-			list-style: none;
+			#grid > .row(true, @grid-gutterWidth);
 
 			&.center {
 				text-align: center;
 			}
 		}
-		/* Opera as of 12 on Windows needs word-spacing.
-		   The ".opera-only" selector is used to prevent actual prefocus styling
-		   and is not required in markup.
-		*/
-		.opera-only :-o-prefocus,
-		.row {
-			word-spacing: -0.43em;
-		}
 
 		.column, [class*="span-"], [class*="column-"] {
-			display: inline-block;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			-ms-box-sizing: border-box;
-			-o-box-sizing: border-box;
-			box-sizing: border-box;
-			min-height: 1px; /* prevent collapsing columns */
-			letter-spacing: normal;
-			word-spacing: normal;
-			vertical-align: top;
-			text-rendering: auto;
-			*display: inline; /* For IE6/IE7 */
-			*zoom: 1; /* For IE6/IE7 */	
+			#grid > .column(true, @grid-gutterWidth);
 		}
 
-		.gutterWidth (@gutter-width){
-			.row {
-				margin-left: -@gutter-width/2;
-				margin-right: -@gutter-width/2;
-			}
-
-			.column, [class*="span-"], [class*="column-"] {
-				margin-left: @gutter-width/2;
-				margin-right: @gutter-width/2;
-			}
-		}
-
-		.withNoGutter (@with-noGutter) when(@with-noGutter = true){
+		.withNoGutter (@with-noGutter) when (@with-noGutter = true){
 			.no-gutter {
 				margin-left: 0;
 				margin-right: 0;
@@ -60,8 +23,7 @@
 				}
 			}
 		}
-		
-		.gutterWidth (@gutter-width);
+	
 		.withNoGutter (@with-noGutter);
 	}
 }

@@ -1,7 +1,7 @@
 @import "semantic.less";
 
-@grid-phrase-numerator:  one two three four five six seven eight nine ten eleven twelve;
-@grid-phrase-denominator: full half third fourth fifth sixth;
+@grid-phrase-numerators:  one two three four five six seven eight nine ten eleven twelve;
+@grid-phrase-denominators: full half third fourth fifth sixth seventh eighth ninth;
 
 #grid {
 	.phrase (@grid-columns, @with-noGutter) {
@@ -10,24 +10,25 @@
 	}
 	.phrase (@namespace, @grid-columns, @with-noGutter, @has-gutter: true) {
 		// define
-		.denominatorX (@index) when (@index < @grid-columns + 1) {
-			@denominator-word: extract(@grid-phrase-denominator, @index);
+		.columnX (@denominator) when (@denominator < @grid-columns + 1) {
+			@denominator-word: extract(@grid-phrase-denominators, @denominator);
+			
 			.@{namespace}@{denominator-word} {
-				#grid > .column-width (100%/@index, @has-gutter);
+				#grid > .column-width (100% / @denominator, @has-gutter);
 			}
 			
-			.numeratorX (@numerator) when (@numerator < @index) {
-				@numerator-word: extract(@grid-phrase-numerator, @numerator);
+			.numeratorX (@numerator) when (@numerator < @denominator) {
+				@numerator-word: extract(@grid-phrase-numerators, @numerator);
 
 				.@{namespace}@{numerator-word}-@{denominator-word} {
-					#grid > .column-width ((100%/@index)*@numerator, @has-gutter);
+					#grid > .column-width ((100% / @denominator) * @numerator, @has-gutter);
 				}
 				.numeratorX (@numerator + 1);
 			}
 
 			.numeratorX (2);
 
-			.denominatorX (@index + 1);
+			.columnX (@denominator + 1);
 		}
 
 		.withNoGutter (@with-noGutter) when(@with-noGutter = true){
@@ -37,7 +38,7 @@
 		}
 
 		// generate
-		.denominatorX (1);
+		.columnX (1);
 		.withNoGutter (@with-noGutter);
 	}
 }

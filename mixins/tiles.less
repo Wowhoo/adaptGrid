@@ -16,20 +16,18 @@
 			.columnX (@index + 1);
 		}
 		
-		.withNoGutter (@with-noGutter) when(@with-noGutter = true){
-			.columnX (@index) when (@index < @grid-columns + 1) {
-				.@{namespace}has-@{index}.no-gutter {
-					.column {
-						#grid > .column-width (100%/@index, false);
-					}
+
+		.columnX (@index, @with-noGutter) when (@index < @grid-columns + 1) and (@with-noGutter = true) {
+			.@{namespace}has-@{index}.no-gutter {
+				.column {
+					#grid > .column-width (100%/@index, false);
 				}
-				.columnX (@index + 1);
 			}
-			.columnX (1);
+			.columnX (@index + 1, @with-noGutter);
 		}
 		
 		// generate
 		.columnX (1);
-		.withNoGutter (@with-noGutter);
+		.columnX (1, @with-noGutter);
 	}
 }

@@ -1,28 +1,14 @@
 .row {
   letter-spacing: -0.31em;
-  /* Webkit: collapse white-space between units */
-
   *letter-spacing: normal;
-  /* reset IE < 8 */
-
   *word-spacing: -0.43em;
-  /* IE < 8: collapse white-space between units */
-
   text-rendering: optimizespeed;
-  /* Webkit: fixes text-rendering: optimizeLegibility */
-
   list-style: none;
+  margin-left: -10px;
+  margin-right: -10px;
 }
 .row.center {
   text-align: center;
-}
-/* Opera as of 12 on Windows needs word-spacing.
-		   The ".opera-only" selector is used to prevent actual prefocus styling
-		   and is not required in markup.
-		*/
-.opera-only :-o-prefocus,
-.row {
-  word-spacing: -0.43em;
 }
 .column,
 [class*="span-"],
@@ -34,25 +20,12 @@
   -o-box-sizing: border-box;
   box-sizing: border-box;
   min-height: 1px;
-  /* prevent collapsing columns */
-
   letter-spacing: normal;
   word-spacing: normal;
   vertical-align: top;
   text-rendering: auto;
   *display: inline;
-  /* For IE6/IE7 */
-
   *zoom: 1;
-  /* For IE6/IE7 */
-}
-.row {
-  margin-left: -10px;
-  margin-right: -10px;
-}
-.column,
-[class*="span-"],
-[class*="column-"] {
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -74,7 +47,7 @@
   width: calc(8.333% - 20px);
 }
 .span-2 {
-  width: 14.667000000000002%;
+  width: 14.667%;
   width: -webkit-calc(16.667% - 20px);
   width: -moz-calc(16.667% - 20px);
   width: -o-calc(16.667% - 20px);
@@ -319,37 +292,37 @@
   margin-right: calc(91.667% + 10px);
 }
 .no-gutter .span-1 {
-  width: 8.333333333333334%;
+  width: 8.333%;
 }
 .no-gutter .span-2 {
-  width: 16.666666666666668%;
+  width: 16.667%;
 }
 .no-gutter .span-3 {
   width: 25%;
 }
 .no-gutter .span-4 {
-  width: 33.333333333333336%;
+  width: 33.333%;
 }
 .no-gutter .span-5 {
-  width: 41.66666666666667%;
+  width: 41.667%;
 }
 .no-gutter .span-6 {
   width: 50%;
 }
 .no-gutter .span-7 {
-  width: 58.333333333333336%;
+  width: 58.333%;
 }
 .no-gutter .span-8 {
-  width: 66.66666666666667%;
+  width: 66.667%;
 }
 .no-gutter .span-9 {
   width: 75%;
 }
 .no-gutter .span-10 {
-  width: 83.33333333333334%;
+  width: 83.333%;
 }
 .no-gutter .span-11 {
-  width: 91.66666666666667%;
+  width: 91.667%;
 }
 .no-gutter .span-12 {
   width: 100%;
@@ -730,7 +703,7 @@
 }
 @media only screen and (max-width: 480px) {
   .mobile-span-1 {
-    width: 14.667000000000002%;
+    width: 14.667%;
     width: -webkit-calc(16.667% - 20px);
     width: -moz-calc(16.667% - 20px);
     width: -o-calc(16.667% - 20px);
@@ -856,19 +829,19 @@
     margin-right: calc(83.333% + 10px);
   }
   .no-gutter .mobile-span-1 {
-    width: 16.666666666666668%;
+    width: 16.667%;
   }
   .no-gutter .mobile-span-2 {
-    width: 33.333333333333336%;
+    width: 33.333%;
   }
   .no-gutter .mobile-span-3 {
     width: 50%;
   }
   .no-gutter .mobile-span-4 {
-    width: 66.66666666666667%;
+    width: 66.667%;
   }
   .no-gutter .mobile-span-5 {
-    width: 83.33333333333334%;
+    width: 83.333%;
   }
   .no-gutter .mobile-span-6 {
     width: 100%;

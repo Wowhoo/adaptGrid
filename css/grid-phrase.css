@@ -1,28 +1,14 @@
 .row {
   letter-spacing: -0.31em;
-  /* Webkit: collapse white-space between units */
-
   *letter-spacing: normal;
-  /* reset IE < 8 */
-
   *word-spacing: -0.43em;
-  /* IE < 8: collapse white-space between units */
-
   text-rendering: optimizespeed;
-  /* Webkit: fixes text-rendering: optimizeLegibility */
-
   list-style: none;
+  margin-left: -10px;
+  margin-right: -10px;
 }
 .row.center {
   text-align: center;
-}
-/* Opera as of 12 on Windows needs word-spacing.
-		   The ".opera-only" selector is used to prevent actual prefocus styling
-		   and is not required in markup.
-		*/
-.opera-only :-o-prefocus,
-.row {
-  word-spacing: -0.43em;
 }
 .column,
 [class*="span-"],
@@ -34,25 +20,12 @@
   -o-box-sizing: border-box;
   box-sizing: border-box;
   min-height: 1px;
-  /* prevent collapsing columns */
-
   letter-spacing: normal;
   word-spacing: normal;
   vertical-align: top;
   text-rendering: auto;
   *display: inline;
-  /* For IE6/IE7 */
-
   *zoom: 1;
-  /* For IE6/IE7 */
-}
-.row {
-  margin-left: -10px;
-  margin-right: -10px;
-}
-.column,
-[class*="span-"],
-[class*="column-"] {
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -144,7 +117,7 @@
   width: calc(80% - 20px);
 }
 .sixth {
-  width: 14.667000000000002%;
+  width: 14.667%;
   width: -webkit-calc(16.667% - 20px);
   width: -moz-calc(16.667% - 20px);
   width: -o-calc(16.667% - 20px);
@@ -185,10 +158,10 @@
   width: 50%;
 }
 .no-gutter .third {
-  width: 33.333333333333336%;
+  width: 33.333%;
 }
 .no-gutter .two-third {
-  width: 66.66666666666667%;
+  width: 66.667%;
 }
 .no-gutter .fourth {
   width: 25%;
@@ -212,19 +185,19 @@
   width: 80%;
 }
 .no-gutter .sixth {
-  width: 16.666666666666668%;
+  width: 16.667%;
 }
 .no-gutter .two-sixth {
-  width: 33.333333333333336%;
+  width: 33.333%;
 }
 .no-gutter .three-sixth {
   width: 50%;
 }
 .no-gutter .four-sixth {
-  width: 66.66666666666667%;
+  width: 66.667%;
 }
 .no-gutter .five-sixth {
-  width: 83.33333333333334%;
+  width: 83.333%;
 }
 @media only screen and (max-width: 768px) {
   .tablet-full {
@@ -305,7 +278,7 @@
     width: calc(80% - 20px);
   }
   .tablet-sixth {
-    width: 14.667000000000002%;
+    width: 14.667%;
     width: -webkit-calc(16.667% - 20px);
     width: -moz-calc(16.667% - 20px);
     width: -o-calc(16.667% - 20px);
@@ -346,10 +319,10 @@
     width: 50%;
   }
   .no-gutter .tablet-third {
-    width: 33.333333333333336%;
+    width: 33.333%;
   }
   .no-gutter .tablet-two-third {
-    width: 66.66666666666667%;
+    width: 66.667%;
   }
   .no-gutter .tablet-fourth {
     width: 25%;
@@ -373,19 +346,19 @@
     width: 80%;
   }
   .no-gutter .tablet-sixth {
-    width: 16.666666666666668%;
+    width: 16.667%;
   }
   .no-gutter .tablet-two-sixth {
-    width: 33.333333333333336%;
+    width: 33.333%;
   }
   .no-gutter .tablet-three-sixth {
     width: 50%;
   }
   .no-gutter .tablet-four-sixth {
-    width: 66.66666666666667%;
+    width: 66.667%;
   }
   .no-gutter .tablet-five-sixth {
-    width: 83.33333333333334%;
+    width: 83.333%;
   }
 }
 @media only screen and (max-width: 480px) {
@@ -445,10 +418,10 @@
     width: 50%;
   }
   .no-gutter .mobile-third {
-    width: 33.333333333333336%;
+    width: 33.333%;
   }
   .no-gutter .mobile-two-third {
-    width: 66.66666666666667%;
+    width: 66.667%;
   }
   .no-gutter .mobile-fourth {
     width: 25%;
