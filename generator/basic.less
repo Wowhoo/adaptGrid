@@ -2,12 +2,31 @@
 @import "core.less";
 @import "../mixins/basic.less";
 
-#grid > .basic (@grid-basic-columns, @grid-basic-withPrefix, @grid-basic-withSuffix, @grid-basic-withNoGutter);
+#gird {
+	.basic-device-generator (@variables){
+		@prefix: ;
+		@columns: extract(@variables, 1);
+		@withPrefix: extract(@variables, 2);
+		@withSuffix: extract(@variables, 3);
+		@withNoGutter: extract(@variables, 4);
 
-@media only screen and (max-width: @grid-tablet-breakpoint) {
-	#grid > .basic (@grid-tablet-prefix, @grid-tablet-basic-columns, @grid-tablet-basic-withPrefix, @grid-tablet-basic-withSuffix, @grid-tablet-basic-withNoGutter);
+
+		#grid > .basic (@prefix, @columns, @withPrefix, @withSuffix, @withNoGutter);
+	}
+
+	.basic-device-generator (@device, @breakpoint, @variables) {
+		@prefix: ~"@{device}-";
+		@columns: extract(@variables, 1);
+		@withPrefix: extract(@variables, 2);
+		@withSuffix: extract(@variables, 3);
+		@withNoGutter: extract(@variables, 4);
+
+		@media only screen and (max-width: @breakpoint) {
+			#grid > .basic (@prefix, @columns, @withPrefix, @withSuffix, @withNoGutter);
+		}
+	}
 }
 
-@media only screen and (max-width: @grid-mobile-breakpoint) {
-	#grid > .basic (@grid-mobile-prefix, @grid-mobile-basic-columns, @grid-mobile-basic-withPrefix, @grid-mobile-basic-withSuffix, @grid-mobile-basic-withNoGutter);
-}
+#gird > .basic-device-generator(@grid-basic-default);
+#gird > .basic-device-generator(tablet, 768px, @grid-basic-tablet);
+#gird > .basic-device-generator(mobile, 480px, @grid-basic-mobile);

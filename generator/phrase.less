@@ -2,12 +2,28 @@
 @import "core.less";
 @import "../mixins/phrase.less";
 
-#grid > .phrase (@grid-phrase-columns, @grid-phrase-withNoGutter);
 
-@media only screen and (max-width: @grid-tablet-breakpoint) {
-	#grid > .phrase (@grid-tablet-prefix, @grid-tablet-phrase-columns, @grid-tablet-phrase-withNoGutter);
+
+#gird {
+	.phrase-device-generator (@variables){
+		@prefix: ;
+		@columns: extract(@variables, 1);
+		@withNoGutter: extract(@variables, 2);
+
+		#grid > .phrase (@prefix, @columns, @withNoGutter);
+	}
+
+	.phrase-device-generator (@device, @breakpoint, @variables) {
+		@prefix: ~"@{device}-";
+		@columns: extract(@variables, 1);
+		@withNoGutter: extract(@variables, 2);
+
+		@media only screen and (max-width: @breakpoint) {
+			#grid > .phrase (@prefix, @columns, @withNoGutter);
+		}
+	}
 }
 
-@media only screen and (max-width: @grid-mobile-breakpoint) {
-	#grid > .phrase (@grid-mobile-prefix, @grid-mobile-phrase-columns, @grid-mobile-phrase-withNoGutter);
-}
+#gird > .phrase-device-generator(@grid-phrase-default);
+#gird > .phrase-device-generator(tablet, 768px, @grid-phrase-tablet);
+#gird > .phrase-device-generator(mobile, 480px, @grid-phrase-mobile);

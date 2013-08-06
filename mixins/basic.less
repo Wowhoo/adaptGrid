@@ -1,10 +1,6 @@
 @import "semantic.less";
 
 #grid {
-	.basic (@grid-columns, @with-prefix, @with-suffix, @with-noGutter) {
-		@namespace: ;
-		#grid > .basic (@namespace, @grid-columns, @with-prefix, @with-suffix, @with-noGutter);
-	}
 	.basic (@namespace, @grid-columns, @with-prefix, @with-suffix, @with-noGutter, @has-gutter: true) {
 		// define
 		.spanX (@index) when (@index < @grid-columns + 1) {

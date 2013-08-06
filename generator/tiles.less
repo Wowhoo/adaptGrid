@@ -2,12 +2,26 @@
 @import "core.less";
 @import "../mixins/tiles.less";
 
-#grid > .tiles (@grid-tiles-columns, @grid-tiles-withNoGutter);
+#gird {
+	.tiles-device-generator (@variables){
+		@prefix: ;
+		@columns: extract(@variables, 1);
+		@withNoGutter: extract(@variables, 2);
 
-@media only screen and (max-width: @grid-tablet-breakpoint) {
-	#grid > .tiles (@grid-tablet-prefix, @grid-tablet-tiles-columns, @grid-tablet-tiles-withNoGutter);
+		#grid > .tiles (@prefix, @columns, @withNoGutter);
+	}
+
+	.tiles-device-generator (@device, @breakpoint, @variables) {
+		@prefix: ~"@{device}-";
+		@columns: extract(@variables, 1);
+		@withNoGutter: extract(@variables, 2);
+
+		@media only screen and (max-width: @breakpoint) {
+			#grid > .tiles (@prefix, @columns, @withNoGutter);
+		}
+	}
 }
 
-@media only screen and (max-width: @grid-mobile-breakpoint) {
-	#grid > .tiles (@grid-mobile-prefix, @grid-mobile-tiles-columns, @grid-mobile-tiles-withNoGutter);
-}
+#gird > .tiles-device-generator(@grid-tiles-default);
+#gird > .tiles-device-generator(tablet, 768px, @grid-tiles-tablet);
+#gird > .tiles-device-generator(mobile, 480px, @grid-tiles-mobile);

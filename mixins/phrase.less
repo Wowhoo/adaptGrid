@@ -4,15 +4,11 @@
 @grid-phrase-denominators: full half third fourth fifth sixth seventh eighth ninth;
 
 #grid {
-	.phrase (@grid-columns, @with-noGutter) {
-		@namespace: ;
-		#grid > .phrase (@namespace, @grid-columns, @with-noGutter);
-	}
 	.phrase (@namespace, @grid-columns, @with-noGutter, @has-gutter: true) {
 		// define
 		.columnX (@denominator) when (@denominator < @grid-columns + 1) {
 			@denominator-word: extract(@grid-phrase-denominators, @denominator);
-			
+
 			.@{namespace}@{denominator-word} {
 				#grid > .column-width (100% / @denominator, @has-gutter);
 			}
