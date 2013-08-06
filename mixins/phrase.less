@@ -1,33 +1,26 @@
-@phrase-numerator:  one two three four five six seven eight nine ten eleven twelve;
-@phrase-denominator: full half third fourth fifth sixth;
+@import "semantic.less";
 
+@grid-phrase-numerator:  one two three four five six seven eight nine ten eleven twelve;
+@grid-phrase-denominator: full half third fourth fifth sixth;
 
 #grid {
-	.phrase (@gridColumns, @grid-phrase-withNoGutter) {
+	.phrase (@grid-columns, @with-noGutter) {
 		@namespace: ;
-		#grid > .phrase (@namespace, @gridColumns, @grid-phrase-withNoGutter);
+		#grid > .phrase (@namespace, @grid-columns, @with-noGutter);
 	}
-	.phrase (@namespace, @gridColumns, @grid-phrase-withNoGutter) {
+	.phrase (@namespace, @grid-columns, @with-noGutter, @has-gutter: true) {
 		// define
-		.denominatorX (@index) when (@index < @gridColumns + 1) {
-			@denominator-word: extract(@phrase-denominator, @index);
-			.@{denominator-word} {
-				width: 100%/@index - @grid-ie8-gutterWidth;
-				width: ~"-webkit-calc(100%/@{index} - @{grid-gutterWidth})";
-				width:    ~"-moz-calc(100%/@{index} - @{grid-gutterWidth})";
-				width:      ~"-o-calc(100%/@{index} - @{grid-gutterWidth})";
-				width:         ~"calc(100%/@{index} - @{grid-gutterWidth})";
+		.denominatorX (@index) when (@index < @grid-columns + 1) {
+			@denominator-word: extract(@grid-phrase-denominator, @index);
+			.@{namespace}@{denominator-word} {
+				#grid > .column-width (100%/@index, @has-gutter);
 			}
 			
 			.numeratorX (@numerator) when (@numerator < @index) {
-				@numerator-word: extract(@phrase-numerator, @numerator);
+				@numerator-word: extract(@grid-phrase-numerator, @numerator);
 
-				.@{numerator-word}-@{denominator-word} {
-					width: (100%/@index)*@numerator - @grid-ie8-gutterWidth;
-					width: ~"-webkit-calc(100%*@{numerator}/@{index} - @{grid-gutterWidth})";
-					width:    ~"-moz-calc(100%*@{numerator}/@{index} - @{grid-gutterWidth})";
-					width:      ~"-o-calc(100%*@{numerator}/@{index} - @{grid-gutterWidth})";
-					width:         ~"calc(100%*@{numerator}/@{index} - @{grid-gutterWidth})";
+				.@{namespace}@{numerator-word}-@{denominator-word} {
+					#grid > .column-width ((100%/@index)*@numerator, @has-gutter);
 				}
 				.numeratorX (@numerator + 1);
 			}
@@ -36,17 +29,15 @@
 
 			.denominatorX (@index + 1);
 		}
-		.withNoGutter (@grid-phrase-withNoGutter) when (@grid-phrase-withNoGutter = true) {
-			@grid-phrase-withNoGutter: false;
-			@grid-ie8-gutterWidth: 0;
-			@grid-gutterWidth: 0;
+
+		.withNoGutter (@with-noGutter) when(@with-noGutter = true){
 			.no-gutter {
-				#grid > .phrase (@grid-phrase-columns, @grid-phrase-withNoGutter);
+				#grid > .phrase (@namespace, @grid-columns, false, false);
 			}
 		}
 
 		// generate
 		.denominatorX (1);
-		.withNoGutter (@grid-phrase-withNoGutter);
+		.withNoGutter (@with-noGutter);
 	}
 }

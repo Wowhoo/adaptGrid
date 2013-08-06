@@ -1,21 +1,19 @@
 @import "../generator/variables.less";
 
-#semantic {
+#grid {
 	// row
 	.row(@grid-semantic-column:@grid-semantic-column) {
-		letter-spacing: -0.31em;
-		word-spacing: -0.43em;
-		*letter-spacing: normal;
-		*word-spacing: -0.43em;
-		overflow: hidden;
+		letter-spacing: -0.31em; /* Webkit: collapse white-space between units */
+		*letter-spacing: normal; /* reset IE < 8 */
+		*word-spacing: -0.43em; /* IE < 8: collapse white-space between units */
+		text-rendering: optimizespeed; /* Webkit: fixes text-rendering: optimizeLegibility */
 		list-style: none;
 
-		margin-left: 0 - @grid-semantic-gutterWidth;
+		margin: 0 -@grid-semantic-gutterWidth/2;
 	}
 
 	// span
-	.span(@x,@grid-semantic-column:@grid-semantic-column) {
-		@spanWidth: (@grid-semantic-totalWidth / @grid-semantic-column) * @x;
+	.span(@x, @grid-semantic-column:@grid-semantic-column) {
 		display: inline-block;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -23,33 +21,80 @@
 		-o-box-sizing: border-box;
 		box-sizing: border-box;
 		min-height: 1px; /* prevent collapsing columns */
-		vertical-align: top;
-		
 		letter-spacing: normal;
 		word-spacing: normal;
+		vertical-align: top;
+		text-rendering: auto;
 		*display: inline; /* For IE6/IE7 */
-		*zoom: 1; /* For IE6/IE7 */
+		*zoom: 1; /* For IE6/IE7 */	
 
-		width: @spanWidth - @grid-ie8-gutterWidth;
-		width: ~"-webkit-calc(@{spanWidth} - @{grid-gutterWidth})";
-		width:    ~"-moz-calc(@{spanWidth} - @{grid-gutterWidth})";
-		width:      ~"-o-calc(@{spanWidth} - @{grid-gutterWidth})";
-		width:         ~"calc(@{spanWidth} - @{grid-gutterWidth})";
-		margin-left: @grid-semantic-gutterWidth;
+		#grid > .column-width ((@grid-semantic-totalWidth / @grid-semantic-column) * @x, @gird-semantic-withGutter);
+
+		margin: 0 @grid-semantic-gutterWidth/2;
 	}
 
 	// push will make moves to the right
 	.push(@offset:1) {
-		@pushWidth: (@grid-semantic-totalWidth / @grid-semantic-column) * @offset;
-		margin-left: @pushWidth + @grid-ie8-gutterWidth;
-		margin-left: ~"-webkit-calc(@{pushWidth} + @{grid-gutterWidth})";
-		margin-left:    ~"-moz-calc(@{pushWidth} + @{grid-gutterWidth})";
-		margin-left:      ~"-o-calc(@{pushWidth} + @{grid-gutterWidth})";
-		margin-left:         ~"calc(@{pushWidth} + @{grid-gutterWidth})";
+		#grid > .push-width ((@grid-semantic-totalWidth / @grid-semantic-column) * @offset, @gird-semantic-withGutter);
 	}
 
 	// pull will make moves to the left
 	.pull(@offset:1) {
-		margin-right: (@grid-semantic-totalWidth / @grid-semantic-column) * @offset;
+		#grid > .pull-width ((@grid-semantic-totalWidth / @grid-semantic-column) * @offset, @gird-semantic-withGutter);
+	}
+
+	.column-width(@width, @has-gutter) when (@has-gutter = false){
+		width: @width;
+	}
+	.column-width(@column-width, @has-gutter) when (@has-gutter = true){
+		@width: round(@column-width, 3);
+		width: @width - @grid-ie8-gutterWidth;
+		width: ~"-webkit-calc(@{width} - @{grid-gutterWidth})";
+		width:    ~"-moz-calc(@{width} - @{grid-gutterWidth})";
+		width:      ~"-o-calc(@{width} - @{grid-gutterWidth})";
+		width:         ~"calc(@{width} - @{grid-gutterWidth})";
+	}
+	.push-width(@push-width, @has-gutter) when (@has-gutter = false){
+		margin-left: @push-width;
+	}
+	.push-width(@push-width, @has-gutter) when (@has-gutter = true) and not (@push-width = 0){
+		@half-gutter-width: @grid-gutterWidth/2;
+		@width: round(@push-width, 3);
+		margin-left: @width + @grid-ie8-gutterWidth/2;
+		margin-left: ~"-webkit-calc(@{width} + @{half-gutter-width})";
+		margin-left:    ~"-moz-calc(@{width} + @{half-gutter-width})";
+		margin-left:      ~"-o-calc(@{width} + @{half-gutter-width})";
+		margin-left:         ~"calc(@{width} + @{half-gutter-width})";
+	}
+	.push-width(@push-width, @has-gutter) when (@has-gutter = true) and (@push-width = 0){
+		@half-gutter-width: @grid-gutterWidth/2;
+
+		margin-left: @grid-ie8-gutterWidth/2;
+		margin-left: ~"-webkit-calc(@{half-gutter-width})";
+		margin-left:    ~"-moz-calc(@{half-gutter-width})";
+		margin-left:      ~"-o-calc(@{half-gutter-width})";
+		margin-left:         ~"calc(@{half-gutter-width})";
+	}
+	.pull-width(@pull-width, @has-gutter) when (@has-gutter = false){
+		margin-right: @pull-width;
+	}
+	.pull-width(@pull-width, @has-gutter) when (@has-gutter = true) and not (@pull-width = 0){
+		@width: round(@pull-width, 3);
+		@half-gutter-width: @grid-gutterWidth/2;
+
+		margin-right: @width + @grid-ie8-gutterWidth/2;
+		margin-right: ~"-webkit-calc(@{width} + @{half-gutter-width})";
+		margin-right:    ~"-moz-calc(@{width} + @{half-gutter-width})";
+		margin-right:      ~"-o-calc(@{width} + @{half-gutter-width})";
+		margin-right:         ~"calc(@{width} + @{half-gutter-width})";
+	}
+	.pull-width(@pull-width, @has-gutter) when (@has-gutter = true) and (@pull-width = 0){
+		@half-gutter-width: @grid-gutterWidth/2;
+
+		margin-right: @pull-width + @grid-ie8-gutterWidth/2;
+		margin-right: ~"-webkit-calc(@{half-gutter-width})";
+		margin-right:    ~"-moz-calc(@{half-gutter-width})";
+		margin-right:      ~"-o-calc(@{half-gutter-width})";
+		margin-right:         ~"calc(@{half-gutter-width})";
 	}
 }

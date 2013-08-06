@@ -1,39 +1,35 @@
+@import "semantic.less";
+
 #grid {
-	.tiles (@gridColumns, @grid-tiles-withNoGutter) {
+	.tiles (@grid-columns, @with-noGutter) {
 		@namespace: ;
-		#grid > .tiles (@namespace, @gridColumns, @grid-tiles-withNoGutter);
+		#grid > .tiles (@namespace, @grid-columns, @with-noGutter);
 	}
-	.tiles (@namespace, @gridColumns, @grid-tiles-withNoGutter) {
+	.tiles (@namespace, @grid-columns, @with-noGutter, @has-gutter: true) {
 		// define
-		.columnX (@index) when (@index < @gridColumns + 1) {
+		.columnX (@index) when (@index < @grid-columns + 1) {
 			.@{namespace}has-@{index} {
 				.column {
-					@columnWidth: 100% / @index;
-					width: @columnWidth - @grid-ie8-gutterWidth;
-					width: ~"-webkit-calc(@{columnWidth} - @{grid-gutterWidth})";
-					width:    ~"-moz-calc(@{columnWidth} - @{grid-gutterWidth})";
-					width:      ~"-o-calc(@{columnWidth} - @{grid-gutterWidth})";
-					width:         ~"calc(@{columnWidth} - @{grid-gutterWidth})";
+					#grid > .column-width (100%/@index, @has-gutter);
 				}
 			}
 			.columnX (@index + 1);
 		}
-		.withNoGutter (@grid-tiles-withNoGutter) when (@grid-tiles-withNoGutter = true) {
-			.columnX (@index) when (@index < @gridColumns + 1) {
-				.@{namespace}has-@{index} {
-					&.no-gutter {
-						.column {
-							width: 100% / @index;
-						}
+		
+		.withNoGutter (@with-noGutter) when(@with-noGutter = true){
+			.columnX (@index) when (@index < @grid-columns + 1) {
+				.@{namespace}has-@{index}.no-gutter {
+					.column {
+						#grid > .column-width (100%/@index, false);
 					}
 				}
 				.columnX (@index + 1);
 			}
 			.columnX (1);
 		}
-
+		
 		// generate
 		.columnX (1);
-		.withNoGutter (@grid-tiles-withNoGutter);
+		.withNoGutter (@with-noGutter);
 	}
 }

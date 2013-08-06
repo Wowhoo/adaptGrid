@@ -1,66 +1,58 @@
+@import "semantic.less";
+
 #grid {
-	.basic (@gridColumns, @withPrefix, @withSuffix, @grid-basic-withNoGutter) {
+	.basic (@grid-columns, @with-prefix, @with-suffix, @with-noGutter) {
 		@namespace: ;
-		#grid > .basic (@namespace, @gridColumns, @withPrefix, @withSuffix, @grid-basic-withNoGutter);
+		#grid > .basic (@namespace, @grid-columns, @with-prefix, @with-suffix, @with-noGutter);
 	}
-	.basic (@namespace, @gridColumns, @withPrefix, @withSuffix, @grid-basic-withNoGutter) {
-		.spanX (@index) when (@index < @gridColumns + 1) {
+	.basic (@namespace, @grid-columns, @with-prefix, @with-suffix, @with-noGutter, @has-gutter: true) {
+		// define
+		.spanX (@index) when (@index < @grid-columns + 1) {
 			.@{namespace}span-@{index} {
 				.span (@index);
 			}
 			.span (@columns) {
-				@spanWidth: (100% / @gridColumns) * @columns;
-				width: @spanWidth - @grid-ie8-gutterWidth;
-				width: ~"-webkit-calc(@{spanWidth} - @{grid-gutterWidth})";
-				width:    ~"-moz-calc(@{spanWidth} - @{grid-gutterWidth})";
-				width:      ~"-o-calc(@{spanWidth} - @{grid-gutterWidth})";
-				width:         ~"calc(@{spanWidth} - @{grid-gutterWidth})";
+				#grid > .column-width ((100% / @grid-columns) * @columns, @has-gutter);
 			}
 			.spanX (@index + 1);
 		}
 		
-		.withPrefix (@withPrefix) when (@withPrefix = true) {
-			.prefixX (@index) when (@index < @gridColumns) {
+		.withPrefix (@with-prefix) when (@with-prefix = true) {
+			.prefixX (@index) when (@index < @grid-columns) {
 				.@{namespace}prefix-@{index} {
 					.prefix (@index);
 				}
 				.prefixX (@index + 1);
 			}
 			.prefix (@columns) {
-				@prefixWidth: (100% / @gridColumns) * @columns;
-				margin-left: @prefixWidth + @grid-ie8-gutterWidth;
-				margin-left: ~"-webkit-calc(@{prefixWidth} + @{grid-gutterWidth})";
-				margin-left:    ~"-moz-calc(@{prefixWidth} + @{grid-gutterWidth})";
-				margin-left:      ~"-o-calc(@{prefixWidth} + @{grid-gutterWidth})";
-				margin-left:         ~"calc(@{prefixWidth} + @{grid-gutterWidth})";
+				#grid > .push-width ((100% / @grid-columns) * @columns, @has-gutter);
 			}
-			.prefixX (1);
+			.prefixX (0);
 		}
 
-		.withSuffix (@withSuffix) when (@withSuffix = true) {
-			.suffixX (@index) when (@index < @gridColumns) {
+		.withSuffix (@with-suffix) when (@with-suffix = true) {
+			.suffixX (@index) when (@index < @grid-columns) {
 				.@{namespace}suffix-@{index} {
 					.suffix (@index);
 				}
 				.suffixX (@index + 1);
 			}
 			.suffix (@columns) {
-				margin-right: (100% / @gridColumns) * @columns;
+				#grid > .pull-width ((100% / @grid-columns) * @columns, @has-gutter);
 			}
-			.suffixX (1);
+			.suffixX (0);
 		}
-		.withNoGutter (@grid-basic-withNoGutter) when (@grid-basic-withNoGutter = true) {
-			@grid-basic-withNoGutter: false;
-			@grid-ie8-gutterWidth: 0;
-			@grid-gutterWidth: 0;
-			.no-gutter {
-				#grid > .basic (@grid-basic-columns, @grid-basic-withPrefix, @grid-basic-withSuffix, @grid-basic-withNoGutter);
-			}
 
+		.withNoGutter (@with-noGutter) when(@with-noGutter = true){
+			.no-gutter {
+				#grid > .basic (@namespace, @grid-columns, @with-prefix, @with-suffix, false, false);
+			}
 		}
+
+		// generate
 		.spanX (1);
-		.withPrefix (@withPrefix);
-		.withSuffix (@withSuffix);
-		.withNoGutter (@grid-basic-withNoGutter);
+		.withPrefix (@with-prefix);
+		.withSuffix (@with-suffix);
+		.withNoGutter (@with-noGutter);
 	}
 }
