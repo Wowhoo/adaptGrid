@@ -42,14 +42,14 @@
 		.column (@has-gutter, @gutter-width);
 	}
 
-	// push will make moves to the right
-	.push (@offset:1, @columns:@grid-semantic-columns, @has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
-		#grid > .push-width ((100% / @columns) * @offset, @has-gutter, @gutter-width);
+	// prefix will make moves to the right
+	.prefix (@offset:1, @columns:@grid-semantic-columns, @has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
+		#grid > .prefix-width ((100% / @columns) * @offset, @has-gutter, @gutter-width);
 	}
 
-	// pull will make moves to the left
-	.pull (@offset:1, @columns:@grid-semantic-columns, @has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
-		#grid > .pull-width ((100% / @columns) * @offset, @has-gutter, @gutter-width);
+	// suffix will make moves to the left
+	.suffix (@offset:1, @columns:@grid-semantic-columns, @has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
+		#grid > .suffix-width ((100% / @columns) * @offset, @has-gutter, @gutter-width);
 	}
 
 	// column width
@@ -65,20 +65,20 @@
 		width:         ~"calc(@{width} - @{gutter-width})";
 	}
 
-	// push margin width
-	.push-width (@push-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = false){
-		margin-left: @push-width;
+	// prefix margin width
+	.prefix-width (@prefix-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = false){
+		margin-left: @prefix-width;
 	}
-	.push-width (@push-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = true) and not (@push-width = 0){
+	.prefix-width (@prefix-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = true) and not (@prefix-width = 0){
 		@half-gutter-width: @gutter-width/2;
-		@width: round(@push-width, 3);
+		@width: round(@prefix-width, 3);
 		margin-left: @width + @grid-ie8-gutterWidth/2;
 		margin-left: ~"-webkit-calc(@{width} + @{half-gutter-width})";
 		margin-left:    ~"-moz-calc(@{width} + @{half-gutter-width})";
 		margin-left:      ~"-o-calc(@{width} + @{half-gutter-width})";
 		margin-left:         ~"calc(@{width} + @{half-gutter-width})";
 	}
-	.push-width (@push-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = true) and (@push-width = 0){
+	.prefix-width (@prefix-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = true) and (@prefix-width = 0){
 		@half-gutter-width: @gutter-width/2;
 
 		margin-left: @grid-ie8-gutterWidth/2;
@@ -88,12 +88,12 @@
 		margin-left:         ~"calc(@{half-gutter-width})";
 	}
 
-	// pull margin width
-	.pull-width (@pull-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = false){
-		margin-right: @pull-width;
+	// suffix margin width
+	.suffix-width (@suffix-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = false){
+		margin-right: @suffix-width;
 	}
-	.pull-width (@pull-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = true) and not (@pull-width = 0){
-		@width: round(@pull-width, 3);
+	.suffix-width (@suffix-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = true) and not (@suffix-width = 0){
+		@width: round(@suffix-width, 3);
 		@half-gutter-width: @gutter-width/2;
 
 		margin-right: @width + @grid-ie8-gutterWidth/2;
@@ -102,10 +102,10 @@
 		margin-right:      ~"-o-calc(@{width} + @{half-gutter-width})";
 		margin-right:         ~"calc(@{width} + @{half-gutter-width})";
 	}
-	.pull-width (@pull-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = true) and (@pull-width = 0){
+	.suffix-width (@suffix-width, @has-gutter, @gutter-width: @grid-gutterWidth) when (@has-gutter = true) and (@suffix-width = 0){
 		@half-gutter-width: @gutter-width/2;
 
-		margin-right: @pull-width + @grid-ie8-gutterWidth/2;
+		margin-right: @suffix-width + @grid-ie8-gutterWidth/2;
 		margin-right: ~"-webkit-calc(@{half-gutter-width})";
 		margin-right:    ~"-moz-calc(@{half-gutter-width})";
 		margin-right:      ~"-o-calc(@{half-gutter-width})";
