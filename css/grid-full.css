@@ -12,8 +12,7 @@
   text-align: center;
 }
 .column,
-[class*="span-"],
-[class*="column-"] {
+[class*="span-"] {
   display: inline-block;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -36,8 +35,7 @@
   margin-right: 0;
 }
 .no-gutter .column,
-.no-gutter [class*="span-"],
-.no-gutter [class*="column-"] {
+.no-gutter [class*="span-"] {
   margin-left: 0;
   margin-right: 0;
 }
