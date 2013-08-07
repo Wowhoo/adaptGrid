@@ -6,7 +6,7 @@
 		.columnX (@index) when (@index < @grid-columns + 1) {
 			.@{namespace}has-@{index} {
 				.column {
-					#grid > .column-width (100%/@index, @has-gutter);
+					#grid.column-width (100%/@index, @has-gutter);
 				}
 			}
 			.columnX (@index + 1);
@@ -16,7 +16,7 @@
 		.columnX (@index, @with-noGutter) when (@index < @grid-columns + 1) and (@with-noGutter = true) {
 			.@{namespace}has-@{index}.no-gutter {
 				.column {
-					#grid > .column-width (100%/@index, false);
+					#grid.column-width (100%/@index, false);
 				}
 			}
 			.columnX (@index + 1, @with-noGutter);

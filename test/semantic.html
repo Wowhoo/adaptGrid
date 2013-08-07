@@ -9,38 +9,77 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../css/grid-phrase.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet/less" type="text/css" href="less/style.less">
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+    <![endif]-->
+    <style type="text/less">
+        @import "../mixins/semantic.less";
+        .example-1 {
+            #grid.row();
+            header, footer {
+                #grid.span(12);
+            }
+            article {
+                #grid.span(8);
+            }
+            aside {
+                #grid.span(4);
+            }
+        }
+
+        .example-2 {
+            #grid.row();
+            header, footer {
+                #grid.span(12);
+            }
+            article {
+                #grid.span(8);
+                #grid.prefix(2);
+                #grid.suffix(2);
+            }
+        }
+    </style>
     <script type="text/javascript" src="js/less.js"></script>
 </head>
+
+
 <body>
-    <header>
+    <header role="banner">
         <div class="container">
-            <h1>This page is to test the Semantic Grid</h1>
+            <h1>Semantic Grid</h1>
         </div>
     </header>
     <section>
         <div class="container">
-            <div class="grid">
-                <article class="type-1">
-                    <p>I’m span(8).</p>
+            <div class="example-1">
+                <header>
+                    <p>Header (12)</p>
+                </header>
+                <article>
+                    <p>Content (8)</p>
                 </article>
-                <aside class="type-1">
-                    <p>I’m span(4).</p>
+                <aside>
+                    <p>Sidebar (4)</p>
                 </aside>
+                <footer>
+                    <p>Footer (12)</p>
+                </footer>
             </div>
         </div>
     </section>
     <section class="shaded">
         <div class="container">
-            <div class="grid">
-                <article class="type-2">
-                    <p>I’m span(8) and suffix(4).</p>
+            <div class="example-2">
+                <header>
+                    <p>Header (12)</p>
+                </header>
+                <article>
+                    <p>Content (prefix: 2, span: 8, suffix: 2)</p>
                 </article>
-                <aside class="type-2">
-                    <p>I’m span(6), prefix(3) and suffix(3).</p>
-                </aside>
+                <footer>
+                    <p>Footer (12)</p>
+                </footer>
             </div>
         </div>
     </section>

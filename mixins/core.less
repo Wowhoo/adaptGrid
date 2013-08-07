@@ -1,7 +1,7 @@
 #grid {
 	.core (@gutter-width, @with-noGutter) {
 		.row {
-			#grid > .row(true, @grid-gutterWidth);
+			#grid.row (true, @grid-gutterWidth);
 
 			&.center {
 				text-align: center;
@@ -9,7 +9,7 @@
 		}
 
 		.column, [class*="span-"], [class*="column-"] {
-			#grid > .column(true, @grid-gutterWidth);
+			#grid.column (true, @grid-gutterWidth, @grid-fontSize);
 		}
 
 		.withNoGutter (@with-noGutter) when (@with-noGutter = true){

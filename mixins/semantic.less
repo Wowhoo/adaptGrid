@@ -3,53 +3,60 @@
 #grid {
 	// row
 	.row (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
-		letter-spacing: -0.31em; // Webkit: collapse white-space between units
-		*letter-spacing: normal; // reset IE < 8
-		*word-spacing: -0.43em; // IE < 8: collapse white-space between units
-		text-rendering: optimizespeed; // Webkit: fixes text-rendering: optimizeLegibility
+		font-size: 0;
 		list-style: none;
 	}
 	.row (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) when (@has-gutter = true){
-		margin-left: -@gutter-width/2;
-		margin-right: -@gutter-width/2;
+		@half-gutter-width: @gutter-width/2;
+
+		margin-left: -@grid-ie8-gutterWidth/2;
+		margin-left: ~"-webkit-calc(-@{half-gutter-width})";
+		margin-left:         ~"calc(-@{half-gutter-width})";
+
+		margin-right: -@grid-ie8-gutterWidth/2;
+		margin-right: ~"-webkit-calc(-@{half-gutter-width})";
+		margin-right:         ~"calc(-@{half-gutter-width})";
 	}
 
 	// column
-	.column (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
+	.column (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth, @font-size: @grid-semantic-fontSize) {
 		display: inline-block;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		-o-box-sizing: border-box;
 		box-sizing: border-box;
 		min-height: 1px; // prevent collapsing columns
-		letter-spacing: normal;
-		word-spacing: normal;
 		vertical-align: top;
-		text-rendering: auto;
+		#grid.font-size (@font-size);
 		*display: inline; // For IE6/IE7
 		*zoom: 1; // For IE6/IE7
 	}
 
-	.column (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) when (@has-gutter = true){
-		margin-left: @gutter-width/2;
-		margin-right: @gutter-width/2;
+	.column (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth, @font-size: @grid-semantic-fontSize) when (@has-gutter = true){
+		@half-gutter-width: @gutter-width/2;
+
+		margin-left: @grid-ie8-gutterWidth/2;
+		margin-left: ~"-webkit-calc(@{half-gutter-width})";
+		margin-left:         ~"calc(@{half-gutter-width})";
+		
+		margin-right: @grid-ie8-gutterWidth/2;
+		margin-right: ~"-webkit-calc(@{half-gutter-width})";
+		margin-right:         ~"calc(@{half-gutter-width})";
 	}
 
 	// span
 	.span (@x:1, @columns:@grid-semantic-columns, @has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
-		#grid > .column-width ((100% / @columns) * @x, @has-gutter, @gutter-width);
+		#grid.column-width ((100% / @columns) * @x, @has-gutter, @gutter-width);
 		.column (@has-gutter, @gutter-width);
 	}
 
 	// prefix will make moves to the right
 	.prefix (@offset:1, @columns:@grid-semantic-columns, @has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
-		#grid > .prefix-width ((100% / @columns) * @offset, @has-gutter, @gutter-width);
+		#grid.prefix-width ((100% / @columns) * @offset, @has-gutter, @gutter-width);
 	}
 
 	// suffix will make moves to the left
 	.suffix (@offset:1, @columns:@grid-semantic-columns, @has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
-		#grid > .suffix-width ((100% / @columns) * @offset, @has-gutter, @gutter-width);
+		#grid.suffix-width ((100% / @columns) * @offset, @has-gutter, @gutter-width);
 	}
 
 	// column width
@@ -60,8 +67,6 @@
 		@width: round(@column-width, 3);
 		width: round(@width - @grid-ie8-gutterWidth, 3);
 		width: ~"-webkit-calc(@{width} - @{gutter-width})";
-		width:    ~"-moz-calc(@{width} - @{gutter-width})";
-		width:      ~"-o-calc(@{width} - @{gutter-width})";
 		width:         ~"calc(@{width} - @{gutter-width})";
 	}
 
@@ -110,5 +115,14 @@
 		margin-right:    ~"-moz-calc(@{half-gutter-width})";
 		margin-right:      ~"-o-calc(@{half-gutter-width})";
 		margin-right:         ~"calc(@{half-gutter-width})";
+	}
+
+	.font-size (@size, @base-size: 16) when not (isunit(@size, "rem")){
+		font-size: @size;
+	}
+	.font-size (@size, @base-size: 16) when (isunit(@size, "rem")){
+		@px-value: unit(@size)*@base-size;
+		font-size: ~"@{px-value}px";
+		font-size: @size;
 	}
 }
