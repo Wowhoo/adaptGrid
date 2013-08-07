@@ -5,6 +5,15 @@
 	.row (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) {
 		font-size: 0;
 		list-style: none;
+
+		// safari 5 dont support font-size: 0
+		@safari-hack: ~"::made-up-pseudo-element,";
+		@{safari-hack} & {
+			@media screen and (-webkit-min-device-pixel-ratio:0) {
+				font-size: inherit;
+				letter-spacing: -.31em;
+			}
+		}
 	}
 	.row (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth) when (@has-gutter = true){
 		@half-gutter-width: @gutter-width/2;
@@ -29,6 +38,14 @@
 		#grid.font-size (@font-size);
 		*display: inline; // For IE6/IE7
 		*zoom: 1; // For IE6/IE7
+
+		// safari 5 dont support font-size: 0
+		@safari-hack: ~"::made-up-pseudo-element,";
+		@{safari-hack} & {
+			@media screen and (-webkit-min-device-pixel-ratio:0) { 
+				letter-spacing: normal;
+			}
+		}
 	}
 
 	.column (@has-gutter: @gird-semantic-hasGutter, @gutter-width: @grid-semantic-gutterWidth, @font-size: @grid-semantic-fontSize) when (@has-gutter = true){

@@ -8,6 +8,12 @@
   margin-right: -webkit-calc(-10px);
   margin-right: calc(-10px);
 }
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  ::made-up-pseudo-element, .row {
+    font-size: inherit;
+    letter-spacing: -0.31em;
+  }
+}
 .row.center {
   text-align: center;
 }
@@ -29,6 +35,12 @@
   margin-right: 1%;
   margin-right: -webkit-calc(10px);
   margin-right: calc(10px);
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  ::made-up-pseudo-element, .column,
+  ::made-up-pseudo-element, [class*="span-"] {
+    letter-spacing: normal;
+  }
 }
 .no-gutter {
   margin-left: 0;
