@@ -26,21 +26,39 @@
             <h2>Phrase Grid</h2>
             <div class="example">
                 <div class="row">
-                    <div class="column full"><p>full</p></div>
-                    <div class="column half"><p>half</p></div>
-                    <div class="column half"><p>half</p></div>
-                    <div class="column two-third"><p>two-third</p></div>
-                    <div class="column third"><p>third</p></div>
-                    <div class="column three-fourth"><p>three-fourth</p></div>
-                    <div class="column fourth"><p>fourth</p></div>
+                    <div class="column full">full</div>
+                    <div class="column half">half</div>
+                    <div class="column half">half</div>
+                    <div class="column two-third">two-third</div>
+                    <div class="column third">third</div>
+                    <div class="column three-fourth">three-fourth</div>
+                    <div class="column fourth">fourth</div>
                 </div>
             </div>
+            <h3>Infinitely Nest columns</h3>
             <div class="example">
                 <div class="row">
-                    <div class="column fourth tablet-half mobile-full"><p>fourth tablet-half mobile-full</p></div>
-                    <div class="column fourth tablet-half mobile-half"><p>fourth tablet-half mobile-half</p></div>
-                    <div class="column fourth tablet-half mobile-half"><p>fourth tablet-half mobile-half</p></div>
-                    <div class="column fourth tablet-half mobile-full"><p>fourth tablet-half mobile-full</p></div>
+                  <div class="column two-third">two-third
+                    <div class="row">
+                      <div class="column two-third">two-third
+                        <div class="row">
+                          <div class="column half">half</div>
+                          <div class="column half">half</div>
+                        </div>
+                      </div>
+                      <div class="column third">third</div>
+                    </div>
+                  </div>
+                  <div class="column third">third</div>
+                </div>
+            </div>
+            <h3>Responsive</h3>
+            <div class="example">
+                <div class="row">
+                    <div class="column fourth tablet-half mobile-full">fourth tablet-half mobile-full</div>
+                    <div class="column fourth tablet-half mobile-half">fourth tablet-half mobile-half</div>
+                    <div class="column fourth tablet-half mobile-half">fourth tablet-half mobile-half</div>
+                    <div class="column fourth tablet-half mobile-full">fourth tablet-half mobile-full</div>
                 </div>
             </div>
         </div>
@@ -50,21 +68,21 @@
             <h2>Phrase Grid -- with-noGutter</h2>
             <div class="example">
                 <div class="row no-gutter">
-                    <div class="column full"><p>full</p></div>
-                    <div class="column half"><p>half</p></div>
-                    <div class="column half"><p>half</p></div>
-                    <div class="column two-third"><p>two-third</p></div>
-                    <div class="column third"><p>third</p></div>
-                    <div class="column three-fourth"><p>three-fourth</p></div>
-                    <div class="column fourth"><p>fourth</p></div>
+                    <div class="column full">full</div>
+                    <div class="column half">half</div>
+                    <div class="column half">half</div>
+                    <div class="column two-third">two-third</div>
+                    <div class="column third">third</div>
+                    <div class="column three-fourth">three-fourth</div>
+                    <div class="column fourth">fourth</div>
                 </div>
             </div>
             <div class="example">
                 <div class="row no-gutter">
-                    <div class="column fourth tablet-half mobile-full"><p>fourth tablet-half mobile-full</p></div>
-                    <div class="column fourth tablet-half mobile-half"><p>fourth tablet-half mobile-half</p></div>
-                    <div class="column fourth tablet-half mobile-half"><p>fourth tablet-half mobile-half</p></div>
-                    <div class="column fourth tablet-half mobile-full"><p>fourth tablet-half mobile-full</p></div>
+                    <div class="column fourth tablet-half mobile-full">fourth tablet-half mobile-full</div>
+                    <div class="column fourth tablet-half mobile-half">fourth tablet-half mobile-half</div>
+                    <div class="column fourth tablet-half mobile-half">fourth tablet-half mobile-half</div>
+                    <div class="column fourth tablet-half mobile-full">fourth tablet-half mobile-full</div>
                 </div>
             </div>
         </div>

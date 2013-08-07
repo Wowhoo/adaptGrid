@@ -26,89 +26,106 @@
             <h2>Basic Grid</h2>
             <div class="example">
                 <div class="row">
-                    <div class="span-1"><p>1</p></div>
-                    <div class="span-11"><p>11</p></div>
+                    <div class="span-1">1</div>
+                    <div class="span-11">11</div>
                 </div>
                 <div class="row">
-                    <div class="span-2"><p>2</p></div>
-                    <div class="span-10"><p>10</p></div>
+                    <div class="span-2">2</div>
+                    <div class="span-10">10</div>
                 </div>
                 <div class="row">
-                    <div class="span-3"><p>3</p></div>
-                    <div class="span-9"><p>9</p></div>
+                    <div class="span-3">3</div>
+                    <div class="span-9">9</div>
                 </div>
                 <div class="row">
-                    <div class="span-4"><p>4</p></div>
-                    <div class="span-8"><p>8</p></div>
+                    <div class="span-4">4</div>
+                    <div class="span-8">8</div>
                 </div>
                 <div class="row">
-                    <div class="span-5"><p>5</p></div>
-                    <div class="span-7"><p>7</p></div>
+                    <div class="span-5">5</div>
+                    <div class="span-7">7</div>
                 </div>
                 <div class="row">
-                    <div class="span-6"><p>6</p></div>
-                    <div class="span-6"><p>6</p></div>
+                    <div class="span-6">6</div>
+                    <div class="span-6">6</div>
                 </div>
                 <div class="row">
-                    <div class="span-7"><p>7</p></div>
-                    <div class="span-5"><p>5</p></div>
+                    <div class="span-7">7</div>
+                    <div class="span-5">5</div>
                 </div>
                 <div class="row">
-                    <div class="span-8"><p>8</p></div>
-                    <div class="span-4"><p>4</p></div>
+                    <div class="span-8">8</div>
+                    <div class="span-4">4</div>
                 </div>
                 <div class="row">
-                    <div class="span-9"><p>9</p></div>
-                    <div class="span-3"><p>3</p></div>
+                    <div class="span-9">9</div>
+                    <div class="span-3">3</div>
                 </div>
                 <div class="row">
-                    <div class="span-10"><p>10</p></div>
-                    <div class="span-2"><p>2</p></div>
+                    <div class="span-10">10</div>
+                    <div class="span-2">2</div>
                 </div>
                 <div class="row">
-                    <div class="span-11"><p>11</p></div>
-                    <div class="span-1"><p>1</p></div>
+                    <div class="span-11">11</div>
+                    <div class="span-1">1</div>
                 </div>
             </div>
             <h3>Offsetting columns</h3>
             <div class="example">
                 <div class="row no-spacing">
-                    <div class="span-6 prefix-6"><p>pre-6 span-6</p></div>
+                    <div class="span-6 prefix-6">pre-6 span-6</div>
                 </div>
                 <div class="row no-spacing">
-                    <div class="span-6 suffix-6"><p>span-6 suf-6</p></div>
+                    <div class="span-6 suffix-6">span-6 suf-6</div>
                 </div>
                 <div class="row no-spacing">
-                    <div class="span-4 prefix-1 suffix-1"><p>pre-1 span-4 suf-1</p></div>
-                    <div class="span-4 prefix-1 suffix-1"><p>pre-1 span-4 suf-1</p></div>
+                    <div class="span-4 prefix-1 suffix-1">pre-1 span-4 suf-1</div>
+                    <div class="span-4 prefix-1 suffix-1">pre-1 span-4 suf-1</div>
                 </div>
                 <div class="row">
-                    <div class="span-8 prefix-2 suffix-2"><p>pre-2 span-8 suf-2</p></div>
+                    <div class="span-8 prefix-2 suffix-2">pre-2 span-8 suf-2</div>
                 </div>
             </div>
             <h3>Centered columns</h3>
             <div class="example">
                 <div class="row center">
-                    <div class="span-7"><p>span-7 center</p></div>
+                    <div class="span-7">span-7 center</div>
                 </div>
                 <div class="row center">
-                    <div class="span-9"><p>span-9 center</p></div>
+                    <div class="span-9">span-9 center</div>
                 </div>
                 <div class="row center">
-                    <div class="span-11"><p>span-11 center</p></div>
+                    <div class="span-11">span-11 center</div>
+                </div>
+            </div>
+            <h3>Infinitely Nest columns</h3>
+            <div class="example">
+                <div class="row">
+                  <div class="span-8">8
+                    <div class="row">
+                      <div class="span-8">8 Nested
+                        <div class="row">
+                          <div class="span-8">8 Nested Again</div>
+                          <div class="span-4">4</div>
+                        </div>
+                      </div>
+                      <div class="span-4">4</div>
+                    </div>
+                  </div>
+                  <div class="span-4">4</div>
                 </div>
             </div>
             <h3>Responsive</h3>
             <div class="example">
                 <div class="row">
-                    <div class="span-4 prefix-1 suffix-1 tablet-span-10 tablet-prefix-0 tablet-suffix-0"><p>s-4 pre-1 suf-1 t-s-10 t-pre-0 t-suf-0</p></div>
-                    <div class="span-3 tablet-span-5 mobile-span-2"><p>s-3 t-s-5 m-s-2</p></div>
-                    <div class="span-3 tablet-span-5 mobile-span-4"><p>s-3 t-s-5 m-s-4</p></div>
+                    <div class="span-4 prefix-1 suffix-1 tablet-span-10 tablet-prefix-0 tablet-suffix-0">s-4 pre-1 suf-1 t-s-10 t-pre-0 t-suf-0</div>
+                    <div class="span-3 tablet-span-5 mobile-span-2">s-3 t-s-5 m-s-2</div>
+                    <div class="span-3 tablet-span-5 mobile-span-4">s-3 t-s-5 m-s-4</div>
                 </div>
                 <div class="row">
-                    <div class="span-4 tablet-span-8 tablet-prefix-2 mobile-span-6 mobile-prefix-0"><p>s-4 t-s-8 t-pre-2 m-s-6 m-pre-0</p></div>
-                    <div class="span-4 tablet-span-6 mobile-span-3"><p>s-4 t-s-6 m-s-3</p></div>
-                    <div class="span-4 tablet-span-4 mobile-span-3"><p>s-4 t-s-4 m-s-3</p></div>
+                    <div class="span-4 tablet-span-8 tablet-prefix-2 mobile-span-6 mobile-prefix-0">s-4 t-s-8 t-pre-2 m-s-6 m-pre-0</div>
+                    <div class="span-4 tablet-span-6 mobile-span-3">s-4 t-s-6 m-s-3</div>
+                    <div class="span-4 tablet-span-4 mobile-span-3">s-4 t-s-4 m-s-3</div>
                 </div>
             </div>
         </div>
@@ -118,89 +135,89 @@
             <h2>Basic Grid -- with-noGutter</h2>
             <div class="example">
                 <div class="row no-gutter">
-                    <div class="span-1"><p>1</p></div>
-                    <div class="span-11"><p>11</p></div>
+                    <div class="span-1">1</div>
+                    <div class="span-11">11</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-2"><p>2</p></div>
-                    <div class="span-10"><p>10</p></div>
+                    <div class="span-2">2</div>
+                    <div class="span-10">10</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-3"><p>3</p></div>
-                    <div class="span-9"><p>9</p></div>
+                    <div class="span-3">3</div>
+                    <div class="span-9">9</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-4"><p>4</p></div>
-                    <div class="span-8"><p>8</p></div>
+                    <div class="span-4">4</div>
+                    <div class="span-8">8</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-5"><p>5</p></div>
-                    <div class="span-7"><p>7</p></div>
+                    <div class="span-5">5</div>
+                    <div class="span-7">7</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-6"><p>6</p></div>
-                    <div class="span-6"><p>6</p></div>
+                    <div class="span-6">6</div>
+                    <div class="span-6">6</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-7"><p>7</p></div>
-                    <div class="span-5"><p>5</p></div>
+                    <div class="span-7">7</div>
+                    <div class="span-5">5</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-8"><p>8</p></div>
-                    <div class="span-4"><p>4</p></div>
+                    <div class="span-8">8</div>
+                    <div class="span-4">4</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-9"><p>9</p></div>
-                    <div class="span-3"><p>3</p></div>
+                    <div class="span-9">9</div>
+                    <div class="span-3">3</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-10"><p>10</p></div>
-                    <div class="span-2"><p>2</p></div>
+                    <div class="span-10">10</div>
+                    <div class="span-2">2</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-11"><p>11</p></div>
-                    <div class="span-1"><p>1</p></div>
+                    <div class="span-11">11</div>
+                    <div class="span-1">1</div>
                 </div>
             </div>
             <h3>Offsetting columns</h3>
             <div class="example">
                 <div class="row no-gutter no-spacing">
-                    <div class="span-6 prefix-6"><p>pre-6 span-6</p></div>
+                    <div class="span-6 prefix-6">pre-6 span-6</div>
                 </div>
                 <div class="row no-gutter no-spacing">
-                    <div class="span-6 suffix-6"><p>span-6 suf-6</p></div>
+                    <div class="span-6 suffix-6">span-6 suf-6</div>
                 </div>
                 <div class="row no-gutter no-spacing">
-                    <div class="span-4 prefix-1 suffix-1"><p>pre-1 span-4 suf-1</p></div>
-                    <div class="span-4 prefix-1 suffix-1"><p>pre-1 span-4 suf-1</p></div>
+                    <div class="span-4 prefix-1 suffix-1">pre-1 span-4 suf-1</div>
+                    <div class="span-4 prefix-1 suffix-1">pre-1 span-4 suf-1</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-8 prefix-2 suffix-2"><p>pre-2 span-8 suf-2</p></div>
+                    <div class="span-8 prefix-2 suffix-2">pre-2 span-8 suf-2</div>
                 </div>
             </div>
             <h3>Centered columns</h3>
             <div class="example">
                 <div class="row no-gutter center">
-                    <div class="span-7"><p>span-7 center</p></div>
+                    <div class="span-7">span-7 center</div>
                 </div>
                 <div class="row no-gutter center">
-                    <div class="span-9"><p>span-9 center</p></div>
+                    <div class="span-9">span-9 center</div>
                 </div>
                 <div class="row no-gutter center">
-                    <div class="span-11"><p>span-11 center</p></div>
+                    <div class="span-11">span-11 center</div>
                 </div>
             </div>
             <h3>Responsive</h3>
             <div class="example">
                 <div class="row no-gutter">
-                    <div class="span-4 prefix-1 suffix-1 tablet-span-10 tablet-prefix-0 tablet-suffix-0"><p>s-4 pre-1 suf-1 t-s-10 t-pre-0 t-suf-0</p></div>
-                    <div class="span-3 tablet-span-5 mobile-span-2"><p>s-3 t-s-5 m-s-2</p></div>
-                    <div class="span-3 tablet-span-5 mobile-span-4"><p>s-3 t-s-5 m-s-4</p></div>
+                    <div class="span-4 prefix-1 suffix-1 tablet-span-10 tablet-prefix-0 tablet-suffix-0">s-4 pre-1 suf-1 t-s-10 t-pre-0 t-suf-0</div>
+                    <div class="span-3 tablet-span-5 mobile-span-2">s-3 t-s-5 m-s-2</div>
+                    <div class="span-3 tablet-span-5 mobile-span-4">s-3 t-s-5 m-s-4</div>
                 </div>
                 <div class="row no-gutter">
-                    <div class="span-4 tablet-span-8 tablet-prefix-2 mobile-span-6 mobile-prefix-0"><p>s-4 t-s-8 t-pre-2 m-s-6 m-pre-0</p></div>
-                    <div class="span-4 tablet-span-6 mobile-span-3"><p>s-4 t-s-6 m-s-3</p></div>
-                    <div class="span-4 tablet-span-4 mobile-span-3"><p>s-4 t-s-4 m-s-3</p></div>
+                    <div class="span-4 tablet-span-8 tablet-prefix-2 mobile-span-6 mobile-prefix-0">s-4 t-s-8 t-pre-2 m-s-6 m-pre-0</div>
+                    <div class="span-4 tablet-span-6 mobile-span-3">s-4 t-s-6 m-s-3</div>
+                    <div class="span-4 tablet-span-4 mobile-span-3">s-4 t-s-4 m-s-3</div>
                 </div>
             </div>
         </div>
