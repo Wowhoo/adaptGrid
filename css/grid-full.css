@@ -12,6 +12,7 @@
   ::made-up-pseudo-element, .row {
     font-size: inherit;
     letter-spacing: -0.31em;
+    word-spacing: -0.41em;
   }
 }
 .row.center {
@@ -40,6 +41,7 @@
   ::made-up-pseudo-element, .column,
   ::made-up-pseudo-element, [class*="span-"] {
     letter-spacing: normal;
+    word-spacing: normal;
   }
 }
 .no-gutter {
