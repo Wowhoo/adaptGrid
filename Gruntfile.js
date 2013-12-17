@@ -47,20 +47,7 @@ module.exports = function(grunt) {
     less: {
       dist: {
         files: {
-          "css/grid-basic.css": "generator/basic.less",
-          "css/grid-tiles.css": "generator/tiles.less",
-          "css/grid-phrase.css": "generator/phrase.less",
-          "css/grid-full.css": "generator/full.less",
-        }
-      }
-    },
-    recess: {
-      dist: {
-        options: {
-          compile: true
-        },
-        files: {
-          'css/grid-full.css': ['generator/full.less']
+          "css/adaptGrid.css": "less/init.less",
         }
       }
     }
@@ -76,7 +63,4 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   // Default task.
   grunt.registerTask('default', ['jshint','less','concat']);
-  grunt.registerTask('css', ['recess','concat']);
-
-
 };

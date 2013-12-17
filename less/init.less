@@ -1,0 +1,34 @@
+@import "variables.less";
+@import "core/generator.less";
+@import "basic/generator.less";
+@import "phrase/generator.less";
+@import "tiles/generator.less";
+
+
+
+// core
+// ----------------------------------------------------
+#grid.core (@grid-gutterWidth, @grid-withNoGutter);
+
+// basic
+// ----------------------------------------------------
+.init-grid-basic(@enable) when (@enable = true) {
+	#grid.basic-generator ();
+};
+.init-grid-basic(@enable-grid-basic);
+
+
+// phrase
+// ----------------------------------------------------
+.init-grid-phrase(@enable) when (@enable = true) {
+	#grid.phrase-generator ();
+};
+.init-grid-phrase(@enable-grid-phrase);
+
+
+// tiles
+// ----------------------------------------------------
+.init-grid-tiles(@enable) when (@enable = true) {
+	#grid.tiles-generator ();
+};
+.init-grid-tiles(@enable-grid-tiles);
