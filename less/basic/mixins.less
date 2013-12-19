@@ -1,5 +1,3 @@
-// basic
-// ------------------------------------------------------------
 #grid {
 	.basic (@namespace, @grid-columns, @with-prefix, @with-suffix, @with-noGutter, @has-gutter: true) {
 		// define
@@ -12,7 +10,7 @@
 			}
 			.spanX (@index + 1);
 		}
-		
+
 		.withPrefix (@with-prefix) when (@with-prefix = true) {
 			.prefixX (@index) when (@index < @grid-columns) {
 				.@{namespace}prefix-@{index} {
