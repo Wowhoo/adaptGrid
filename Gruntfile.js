@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
+        dest: 'css/<%= pkg.name %>.min.js'
       }
     },
     jshint: {
